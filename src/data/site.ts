@@ -62,7 +62,7 @@ export const testimonials = [
   },
 ];
 
-/** Booking process — four steps, described by what happens. */
+/** Booking process: four steps, described by what happens. */
 export const bookingSteps = [
   {
     step: "01",

@@ -6,6 +6,7 @@ import { TourCard } from "@/components/site/TourCard";
 import { TrailLine } from "@/components/site/TrailLine";
 import { destinations, getDestination } from "@/data/destinations";
 import { tours } from "@/data/tours";
+import { absolute, breadcrumbs, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/destinations/$slug")({
   loader: ({ params }) => {
@@ -15,16 +16,50 @@ export const Route = createFileRoute("/destinations/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Destination not found" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Destination not found" }, { name: "robots", content: "noindex" }],
+      };
     }
     const d = loaderData.destination;
-    const title = `${d.name} — when to go and what it costs`;
+    const path = `/destinations/${d.slug}`;
+    const { meta, links } = seo({
+      title: `${d.name}: When to Go and What It Costs`,
+      description: d.description,
+      path,
+      image: d.slug === "zanzibar" ? "/og/zanzibar.jpg" : "/og/destinations.jpg",
+      keywords: [
+        d.name,
+        `${d.name} safari`,
+        `best time to visit ${d.name}`,
+        ...d.highlight_tags,
+        ...KEYWORDS.core,
+      ],
+    });
     return {
-      meta: [
-        { title },
-        { name: "description", content: d.description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: d.description },
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Destinations", path: "/destinations" },
+            { name: d.name, path },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          name: d.name,
+          description: d.description,
+          url: absolute(path),
+          touristType: ["Wildlife watchers", "Photographers", "Families"],
+          includesAttraction: (d.highlight_tags ?? []).map((tag) => ({
+            "@type": "TouristAttraction",
+            name: tag,
+          })),
+          isAccessibleForFree: false,
+          address: { "@type": "PostalAddress", addressCountry: "TZ" },
+        }),
       ],
     };
   },

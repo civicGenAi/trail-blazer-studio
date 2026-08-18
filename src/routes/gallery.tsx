@@ -5,24 +5,31 @@ import { ctaGhostDark, ctaGold } from "@/components/site/Cta";
 import { Reveal } from "@/components/site/Reveal";
 import { TrailLine } from "@/components/site/TrailLine";
 import { galleryCategories, galleryItems } from "@/data/gallery";
+import { breadcrumbs, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery — northern Tanzania, month and place noted" },
-      {
-        name: "description",
-        content:
-          "Photographs from our own departures, each captioned with where it was taken and in which month.",
-      },
-      { property: "og:title", content: "Gallery" },
-      {
-        property: "og:description",
-        content:
-          "Serengeti, Ngorongoro, Tarangire, Kilimanjaro and Zanzibar, with place and month on every frame.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Safari Photo Gallery",
+      description:
+        "Photographs from our own departures, each tagged with where it was taken and in which month. A picture without a season tells you nothing useful.",
+      path: "/gallery",
+      image: "/og/gallery.jpg",
+      keywords: [...KEYWORDS.core, "Tanzania safari photos", "Serengeti photography"],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Gallery", path: "/gallery" },
+          ]),
+        ),
+      ],
+    };
+  },
   component: GalleryPage,
 });
 

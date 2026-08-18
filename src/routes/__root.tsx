@@ -10,7 +10,15 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import {
+  DEFAULT_OG_IMAGE,
+  jsonLd,
+  KEYWORDS,
+  seo,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from "@/lib/seo";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
@@ -51,10 +59,9 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    console.error(error);
   }, [error]);
 
   return (
@@ -85,38 +92,105 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Arusha Wildlife Safaris",
-  slogan: "Explore Tanzania · Experience the Wild",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  alternateName: "Arusha Safaris",
+  slogan: SITE_TAGLINE,
+  description:
+    "Tanzania safari operator based in Arusha, running northern-circuit safaris, Great Migration departures, Kilimanjaro treks and Zanzibar extensions with its own vehicles and salaried guides.",
+  url: SITE_URL,
+  logo: `${SITE_URL}/android-chrome-512x512.png`,
+  image: DEFAULT_OG_IMAGE,
   email: "book@arushawildlifesafaris.com",
   telephone: "+255700000000",
+  foundingDate: "2014",
+  priceRange: "$$-$$$",
+  currenciesAccepted: "USD",
+  paymentAccepted: "Bank transfer, Credit card",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Njiro Road",
     addressLocality: "Arusha",
+    addressRegion: "Arusha Region",
     addressCountry: "TZ",
   },
   geo: { "@type": "GeoCoordinates", latitude: -3.3667, longitude: 36.6833 },
-  areaServed: ["Serengeti", "Ngorongoro", "Tarangire", "Kilimanjaro", "Zanzibar"],
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "630" },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "18:00",
+  },
+  areaServed: [
+    "Serengeti National Park",
+    "Ngorongoro Conservation Area",
+    "Tarangire National Park",
+    "Lake Manyara",
+    "Mount Kilimanjaro",
+    "Zanzibar",
+  ],
+  knowsAbout: [
+    "Great Migration river crossings",
+    "Serengeti calving season",
+    "Kilimanjaro route selection",
+    "Tanzania park fees",
+    "Northern circuit itinerary planning",
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "630",
+    bestRating: "5",
+  },
+  sameAs: [
+    "https://www.instagram.com/arushawildlifesafaris",
+    "https://www.facebook.com/arushawildlifesafaris",
+  ],
 };
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  description: `${SITE_NAME}. ${SITE_TAGLINE}.`,
+  inLanguage: "en",
+  publisher: { "@id": `${SITE_URL}/#organization` },
+};
+
+// Base tags for every page. Child routes override title, description and the
+// social card by name. The canonical deliberately lives on each route instead:
+// link tags from the root and the child are appended, not merged, so declaring
+// one here would put a second, wrong canonical on every inner page.
+const rootSeo = seo({
+  title: `${SITE_NAME} | Tanzania Safaris and Kilimanjaro Treks`,
+  description:
+    "Arusha-based operator running northern-circuit safaris, Great Migration departures and Kilimanjaro routes. Private trips, park fees and full board included.",
+  path: "/",
+  image: "/og/default.jpg",
+  keywords: [...KEYWORDS.brand, ...KEYWORDS.core],
+});
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Arusha Wildlife Safaris — Tanzania safaris and Kilimanjaro treks" },
-      {
-        name: "description",
-        content:
-          "Arusha-based operator running northern-circuit safaris, Great Migration trips, Kilimanjaro routes and Zanzibar extensions.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#14231C" },
+      { name: "apple-mobile-web-app-title", content: "Arusha Safaris" },
+      { name: "geo.region", content: "TZ-01" },
+      { name: "geo.placename", content: "Arusha, Tanzania" },
+      { name: "geo.position", content: "-3.3667;36.6833" },
+      ...rootSeo.meta,
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -130,10 +204,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         // this flag is set, so a page with blocked or broken JS still renders.
         children: 'document.documentElement.setAttribute("data-js","on")',
       },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(organizationSchema),
-      },
+      jsonLd(organizationSchema),
+      jsonLd(websiteSchema),
     ],
   }),
   shellComponent: RootShell,

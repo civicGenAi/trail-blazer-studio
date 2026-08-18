@@ -6,23 +6,32 @@ import { TourCard } from "@/components/site/TourCard";
 import { WHATSAPP_URL } from "@/components/site/nav-data";
 import { migrationFaq, migrationMonths, migrationStats } from "@/data/migration";
 import { images, tours } from "@/data/tours";
+import { breadcrumbs, faqSchema, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/migration")({
-  head: () => ({
-    meta: [
-      { title: "The Great Migration, month by month — Arusha Wildlife Safaris" },
-      {
-        name: "description",
-        content:
-          "Where the 1.5 million wildebeest are each month, when the Mara River crossings happen, and which trips reach them.",
-      },
-      { property: "og:title", content: "The Great Migration, month by month" },
-      {
-        property: "og:description",
-        content: "Calving in February, Mara crossings July to October. Trips from USD 3,120.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Great Migration Month by Month",
+      description:
+        "Where the 1.5 million wildebeest are each month, when the Mara River crossings happen, and which Tanzania itineraries reach them. From our own trip logs.",
+      path: "/migration",
+      image: "/og/migration.jpg",
+      keywords: [...KEYWORDS.migration, ...KEYWORDS.core],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "The Great Migration", path: "/migration" },
+          ]),
+        ),
+        jsonLd(faqSchema(migrationFaq)),
+      ],
+    };
+  },
   component: MigrationPage,
 });
 
@@ -174,7 +183,7 @@ function MonthStrip({ currentMonth }: { currentMonth: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
-  // The trail line extends as the strip crosses the viewport — the one piece of
+  // The trail line extends as the strip crosses the viewport. It is the one piece of
   // scroll-driven motion on this page.
   useEffect(() => {
     const onScroll = () => {

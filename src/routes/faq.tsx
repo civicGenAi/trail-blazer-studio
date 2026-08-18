@@ -4,23 +4,33 @@ import { ctaGhostDark, ctaGold, WhatsAppLink } from "@/components/site/Cta";
 import { Reveal } from "@/components/site/Reveal";
 import { TrailLine } from "@/components/site/TrailLine";
 import { generalFaq } from "@/data/site";
+import { breadcrumbs, faqSchema, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({
-    meta: [
-      { title: "FAQ — visas, park fees, tipping and packing" },
-      {
-        name: "description",
-        content:
-          "Deposit terms, 2026 park fees, visa costs, tipping ranges, luggage limits and what to pack for a 24-degree temperature spread.",
-      },
-      { property: "og:title", content: "Safari FAQ" },
-      {
-        property: "og:description",
-        content: "Thirteen questions we are asked before every trip, answered with numbers.",
-      },
-    ],
-  }),
+  head: () => {
+    const flat = generalFaq.flatMap((group) => group.items);
+    const { meta, links } = seo({
+      title: "Tanzania Safari FAQ",
+      description:
+        "Deposit terms, 2026 park fees to the dollar, visa costs, tipping ranges, luggage limits and what to pack. Thirteen questions, answered with numbers.",
+      path: "/faq",
+      image: "/og/default.jpg",
+      keywords: [...KEYWORDS.practical, "safari deposit", "Tanzania tipping guide"],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "FAQ", path: "/faq" },
+          ]),
+        ),
+        jsonLd(faqSchema(flat)),
+      ],
+    };
+  },
   component: FaqPage,
 });
 

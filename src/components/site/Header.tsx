@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import logoDark from "@/assets/logo-black.png.asset.json";
+import logoCompact from "@/assets/logo-compact-reversed.png";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { WHATSAPP_URL, browseByType, featuredNavSafaris, moreLinks } from "./nav-data";
 
@@ -35,14 +35,14 @@ export function Header() {
         <Link
           to="/"
           className="flex shrink-0 items-center"
-          aria-label="Arusha Wildlife Safaris — home"
+          aria-label="Arusha Wildlife Safaris, home"
         >
           <img
-            src={logoDark.url}
+            src={logoCompact}
             alt="Arusha Wildlife Safaris"
-            className="h-12 w-auto"
-            width={180}
-            height={120}
+            className="h-11 w-auto sm:h-14"
+            width={463}
+            height={247}
           />
         </Link>
 

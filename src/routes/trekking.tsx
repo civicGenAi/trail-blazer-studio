@@ -6,23 +6,53 @@ import { SectionHead, StatStrip } from "@/components/site/Section";
 import { TrailLine } from "@/components/site/TrailLine";
 import { trekIncluded, trekNotIncluded, trekPrep, trekRoutes, trekHero } from "@/data/trekking";
 import type { TrekRoute } from "@/data/trekking";
+import { breadcrumbs, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/trekking")({
-  head: () => ({
-    meta: [
-      { title: "Kilimanjaro routes compared — Arusha Wildlife Safaris" },
-      {
-        name: "description",
-        content:
-          "Machame, Lemosho, Marangu and Rongai side by side: nights, distance, our summit rates and what the price includes.",
-      },
-      { property: "og:title", content: "Kilimanjaro routes compared" },
-      {
-        property: "og:description",
-        content: "Four routes, 5 to 7 nights, 68% to 92% summit success. From USD 1,890.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Kilimanjaro Routes Compared",
+      description:
+        "Four Kilimanjaro routes side by side: nights, distance, camp altitudes and our own summit rates, 68% on Marangu to 92% on Lemosho. From USD 1,890.",
+      path: "/trekking",
+      image: "/og/trekking.jpg",
+      keywords: [...KEYWORDS.trekking, "climb Kilimanjaro", "Kilimanjaro route comparison"],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Mountain trekking", path: "/trekking" },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Kilimanjaro routes",
+          numberOfItems: trekRoutes.length,
+          itemListElement: trekRoutes.map((r, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "TouristTrip",
+              name: `${r.name} route, Kilimanjaro`,
+              description: r.summary,
+              touristType: "Trekkers",
+              offers: {
+                "@type": "Offer",
+                price: r.price_from_usd,
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock",
+              },
+            },
+          })),
+        }),
+      ],
+    };
+  },
   component: TrekkingPage,
 });
 
@@ -56,7 +86,7 @@ function TrekkingPage() {
             <Link to="/safaris" search={{ type: "Trekking" }} className={ctaGold}>
               Trekking itineraries
             </Link>
-            <WhatsAppLink className={ctaGhostDark} message="Hello — I'd like to climb Kilimanjaro.">
+            <WhatsAppLink className={ctaGhostDark} message="Hello, I'd like to climb Kilimanjaro.">
               Ask about a climb
             </WhatsAppLink>
           </div>

@@ -7,6 +7,7 @@ import { TourCard } from "@/components/site/TourCard";
 import { TrailLine } from "@/components/site/TrailLine";
 import { browseByType } from "@/components/site/nav-data";
 import { tours } from "@/data/tours";
+import { breadcrumbs, itemListSchema, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 const ANY = "Any";
 const durations = [ANY, "1–5 days", "6–8 days", "9+ days"] as const;
@@ -16,7 +17,7 @@ const sorts = ["Popularity", "Price: low to high", "Price: high to low", "Durati
 
 /**
  * Every filter lives in the URL, so a link from the nav mega-menu, the footer or
- * a shared link all land on the same filtered grid — and the back button works.
+ * a shared link all land on the same filtered grid, and the back button works.
  */
 type Search = {
   type?: string;
@@ -40,21 +41,40 @@ export const Route = createFileRoute("/safaris/")({
     if (str(search["sort"])) out.sort = search["sort"] as string;
     return out;
   },
-  head: () => ({
-    meta: [
-      { title: "Safari tours in Tanzania — Arusha Wildlife Safaris" },
-      {
-        name: "description",
-        content:
-          "Filter 6 safari itineraries by type, destination, duration and price. Park fees, full board and a private 4WD included.",
-      },
-      { property: "og:title", content: "Safari tours in Tanzania" },
-      {
-        property: "og:description",
-        content: "Six itineraries from 4 to 10 days, from USD 2,150 per person.",
-      },
-    ],
-  }),
+  head: () => {
+    const days = tours.map((t) => t.duration_days);
+    const priceValues = tours.map((t) => t.price_from_usd);
+    const { meta, links } = seo({
+      title: "Tanzania Safari Tours from Arusha",
+      description: `${tours.length} private safari itineraries, ${Math.min(...days)} to ${Math.max(...days)} days, from USD ${Math.min(...priceValues).toLocaleString()} per person. Park fees, full board and a private 4WD are in every price.`,
+      path: "/safaris",
+      image: "/og/safaris.jpg",
+      keywords: [
+        ...KEYWORDS.core,
+        "private safari Tanzania",
+        "safari packages Arusha",
+        "safari itinerary",
+      ],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Safari tours", path: "/safaris" },
+          ]),
+        ),
+        jsonLd(
+          itemListSchema(
+            "Tanzania safari itineraries",
+            tours.map((t) => `/safaris/${t.slug}`),
+          ),
+        ),
+      ],
+    };
+  },
   component: SafarisIndex,
 });
 

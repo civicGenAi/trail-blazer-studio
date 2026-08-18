@@ -6,6 +6,7 @@ import { TourCard } from "@/components/site/TourCard";
 import { TrailLine } from "@/components/site/TrailLine";
 import { blogPosts, formatPostDate, getPost } from "@/data/blog";
 import { tours } from "@/data/tours";
+import { absolute, breadcrumbs, jsonLd, KEYWORDS, seo, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -18,13 +19,47 @@ export const Route = createFileRoute("/blog/$slug")({
       return { meta: [{ title: "Post not found" }, { name: "robots", content: "noindex" }] };
     }
     const p = loaderData.post;
+    const path = `/blog/${p.slug}`;
+    const { meta, links } = seo({
+      title: p.title,
+      description: p.excerpt,
+      path,
+      image: "/og/default.jpg",
+      type: "article",
+      publishedTime: p.date,
+      author: p.author,
+      keywords: [p.title, p.category, ...KEYWORDS.core],
+    });
     return {
-      meta: [
-        { title: `${p.title} — Arusha Wildlife Safaris` },
-        { name: "description", content: p.excerpt },
-        { property: "og:type", content: "article" },
-        { property: "og:title", content: p.title },
-        { property: "og:description", content: p.excerpt },
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Field notes", path: "/blog" },
+            { name: p.title, path },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: p.title,
+          description: p.excerpt,
+          url: absolute(path),
+          mainEntityOfPage: { "@type": "WebPage", "@id": absolute(path) },
+          datePublished: p.date,
+          dateModified: p.date,
+          wordCount: p.readMinutes * 200,
+          articleSection: p.category,
+          inLanguage: "en",
+          author: {
+            "@type": "Person",
+            name: p.author,
+            worksFor: { "@id": `${SITE_URL}/#organization` },
+          },
+          publisher: { "@id": `${SITE_URL}/#organization` },
+        }),
       ],
     };
   },

@@ -9,11 +9,23 @@ import { browseByType } from "@/components/site/nav-data";
 import { migrationMonths, migrationStats } from "@/data/migration";
 import { testimonials, trustPoints, whyUs } from "@/data/site";
 import { images, tours } from "@/data/tours";
+import { itemListSchema, jsonLd, SITE_URL } from "@/lib/seo";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+// The root route supplies this page's title, description and social card, since
+// they double as the site-wide defaults. Only the canonical is declared here,
+// because the root cannot declare one without duplicating it on every page.
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [
+      jsonLd(
+        itemListSchema(
+          "Featured Tanzania safari itineraries",
+          tours.filter((t) => t.featured).map((t) => `/safaris/${t.slug}`),
+        ),
+      ),
+    ],
+  }),
   component: Index,
 });
 
@@ -34,7 +46,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Featured safaris — offset editorial grid */}
+      {/* Featured safaris, on the offset editorial grid */}
       <section className="py-20 md:py-28">
         <div className="container-editorial">
           <Reveal>
@@ -97,7 +109,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Why us — asymmetric two-column */}
+      {/* Why us, asymmetric two-column */}
       <section className="py-20 md:py-28">
         <div className="container-editorial grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
@@ -132,7 +144,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Migration teaser — full-bleed photograph breaking the container */}
+      {/* Migration teaser, full-bleed photograph breaking the container */}
       <section className="relative isolate grain-dark py-24 md:py-32">
         <img
           src={images.migrationCrossing}
@@ -220,7 +232,7 @@ function Index() {
             <Link to="/contact" className={ctaGold}>
               Plan my safari
             </Link>
-            <WhatsAppLink className={ctaGhostDark} message="Hello — I'd like to plan a safari.">
+            <WhatsAppLink className={ctaGhostDark} message="Hello, I'd like to plan a safari.">
               WhatsApp us
             </WhatsAppLink>
           </Reveal>

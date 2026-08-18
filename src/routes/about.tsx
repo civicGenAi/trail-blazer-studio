@@ -5,23 +5,31 @@ import { SectionHead, StatStrip } from "@/components/site/Section";
 import { TrailLine } from "@/components/site/TrailLine";
 import { bookingSteps, company, trustPoints, whyUs } from "@/data/site";
 import { images } from "@/data/tours";
+import { breadcrumbs, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Arusha Wildlife Safaris — how we operate" },
-      {
-        name: "description",
-        content:
-          "An Arusha-based operator running its own vehicles and salaried guides since 2014. What we own, how we price, and how a booking works.",
-      },
-      { property: "og:title", content: "About Arusha Wildlife Safaris" },
-      {
-        property: "og:description",
-        content: "Own workshop, nine Land Cruisers, guides on salary, itemised pricing.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "About Us",
+      description:
+        "Nine Land Cruisers, our own workshop on Njiro Road and twelve guides on annual salary. What we own, how we price a trip, and how a booking actually works.",
+      path: "/about",
+      image: "/og/default.jpg",
+      keywords: [...KEYWORDS.brand, "Tanzania tour operator", "licensed safari operator Arusha"],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "About us", path: "/about" },
+          ]),
+        ),
+      ],
+    };
+  },
   component: AboutPage,
 });
 
@@ -57,7 +65,7 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* The operating story — offset column */}
+      {/* The operating story, in an offset column */}
       <section className="py-20 md:py-28">
         <div className="container-editorial grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
@@ -176,8 +184,8 @@ function AboutPage() {
               Ask us something specific and we will answer specifically
             </h2>
             <p className="mt-5 max-w-xl text-cream/70">
-              Vehicle age, guide tenure, which camps we hold contracts with — all fair questions,
-              and all answerable in one reply.
+              Vehicle age, guide tenure, which camps we hold contracts with. All fair questions, and
+              all answerable in one reply.
             </p>
           </Reveal>
           <Reveal delay={80} className="flex flex-wrap gap-3 md:justify-end">

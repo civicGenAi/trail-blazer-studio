@@ -19,24 +19,37 @@ import {
   kilimanjaroZones,
 } from "@/data/destinations";
 import { images } from "@/data/tours";
+import { breadcrumbs, itemListSchema, jsonLd, KEYWORDS, seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/destinations/")({
-  head: () => ({
-    meta: [
-      { title: "Where to go in northern Tanzania — Arusha Wildlife Safaris" },
-      {
-        name: "description",
-        content:
-          "Six destinations on the northern circuit with park sizes, drive times and a best-time-to-visit matrix by activity and month.",
-      },
-      { property: "og:title", content: "Where to go in northern Tanzania" },
-      {
-        property: "og:description",
-        content:
-          "Serengeti, Ngorongoro, Tarangire, Ndutu, Kilimanjaro and Zanzibar, with the months that work.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Tanzania Safari Destinations",
+      description:
+        "Six northern-circuit destinations with park sizes, drive times from Arusha and a best-time-to-visit matrix by activity and month, plus Kilimanjaro in full.",
+      path: "/destinations",
+      image: "/og/destinations.jpg",
+      keywords: [...KEYWORDS.destinations, ...KEYWORDS.core],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Destinations", path: "/destinations" },
+          ]),
+        ),
+        jsonLd(
+          itemListSchema(
+            "Tanzania safari destinations",
+            destinations.map((d) => `/destinations/${d.slug}`),
+          ),
+        ),
+      ],
+    };
+  },
   component: DestinationsPage,
 });
 
@@ -195,7 +208,7 @@ function DestinationsPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <WhatsAppLink
                 className={ctaGhostLight}
-                message="Hello — I'd like help choosing destinations."
+                message="Hello, I'd like help choosing destinations."
               >
                 WhatsApp us instead
               </WhatsAppLink>
@@ -232,8 +245,8 @@ function KilimanjaroSection() {
           </h2>
           <p className="mt-5 text-cream/75">
             Five ecological zones in five days of walking, from farmland at 800 m to permanent ice
-            at 5,895 m. The climb is a walk — no technical sections — but the altitude is the whole
-            problem to solve.
+            at 5,895 m. The climb is a walk, with no technical sections, but the altitude is the
+            whole problem to solve.
           </p>
         </Reveal>
 

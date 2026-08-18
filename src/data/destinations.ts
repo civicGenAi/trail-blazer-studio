@@ -300,7 +300,7 @@ export const kilimanjaroLodging = [
   { tier: "Hut (Marangu only)", basis: "Per climber per night", band: "Included" },
 ];
 
-/** Things-to-do counts for the Kilimanjaro section — numbers, no filler. */
+/** Things-to-do counts for the Kilimanjaro section: numbers, no filler. */
 export const kilimanjaroActivities = [
   { value: "7", label: "Routes to the summit" },
   { value: "5", label: "Ecological zones crossed" },

@@ -4,23 +4,50 @@ import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { TrailLine } from "@/components/site/TrailLine";
 import { blogCategories, blogPosts, formatPostDate } from "@/data/blog";
+import { breadcrumbs, jsonLd, KEYWORDS, seo, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
-  head: () => ({
-    meta: [
-      { title: "Field notes — timing, routes and park fees" },
-      {
-        name: "description",
-        content:
-          "Notes from our own departures: when the Mara crossings happen, what park fees cost in 2026, and whether the extra night on Machame is worth it.",
-      },
-      { property: "og:title", content: "Field notes" },
-      {
-        property: "og:description",
-        content: "Six posts on timing, routes, wildlife and the practical side of a Tanzania trip.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Tanzania Safari Field Notes",
+      description:
+        "When the Mara crossings actually happen, what Tanzania park fees cost in 2026, and whether the extra night on Machame is worth paying for.",
+      path: "/blog",
+      image: "/og/default.jpg",
+      keywords: [
+        ...KEYWORDS.core,
+        "Tanzania safari blog",
+        "when to visit Serengeti",
+        "safari planning guide",
+      ],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Field notes", path: "/blog" },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Field notes",
+          url: `${SITE_URL}/blog`,
+          publisher: { "@id": `${SITE_URL}/#organization` },
+          blogPost: blogPosts.map((p) => ({
+            "@type": "BlogPosting",
+            headline: p.title,
+            url: `${SITE_URL}/blog/${p.slug}`,
+            datePublished: p.date,
+            author: { "@type": "Person", name: p.author },
+          })),
+        }),
+      ],
+    };
+  },
   component: BlogIndex,
 });
 
