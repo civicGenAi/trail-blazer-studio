@@ -63,16 +63,16 @@ function ContactPage() {
         <div className="container-editorial">
           <p className="rise eyebrow">Contact</p>
           <TrailLine className="rise-1 mt-4 w-full max-w-xs" />
-          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-6xl">
             Send dates and group size.{" "}
             <em className="font-normal italic">That is enough to start.</em>
           </h1>
-          <p className="rise-3 mt-6 max-w-xl text-cream/70">
+          <p className="rise-3 mt-6 max-w-xl text-mist/70">
             You get a day-by-day draft with named lodges, drive times and an itemised price. Two
             rounds of changes are included and nothing is payable until you confirm.
           </p>
 
-          <dl className="rise-4 mt-12 grid gap-px bg-cream/10 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="rise-4 mt-12 grid gap-px bg-mist/10 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: <Mail className="h-4 w-4" />, k: "Email", v: company.email },
               {
@@ -84,11 +84,11 @@ function ContactPage() {
               { icon: <MapPin className="h-4 w-4" />, k: "Office", v: company.address },
             ].map((c) => (
               <div key={c.k} className="bg-savanna p-6">
-                <dt className="field-note flex items-center gap-2 text-cream/50">
-                  <span className="text-gold">{c.icon}</span>
+                <dt className="field-note flex items-center gap-2 text-mist/50">
+                  <span className="text-summit">{c.icon}</span>
                   {c.k}
                 </dt>
-                <dd className="mt-2.5 text-sm text-cream">{c.v}</dd>
+                <dd className="mt-2.5 text-sm text-mist">{c.v}</dd>
               </div>
             ))}
           </dl>
@@ -114,7 +114,7 @@ function ContactPage() {
               <ol className="mt-6 space-y-6">
                 {bookingSteps.map((s) => (
                   <li key={s.step} className="flex gap-4">
-                    <span className="field-note flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/60 text-gold">
+                    <span className="field-note flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-summit/60 text-summit">
                       {s.step}
                     </span>
                     <span className="min-w-0">
@@ -127,7 +127,7 @@ function ContactPage() {
               <ul className="mt-8 space-y-2.5 border-t border-border pt-6 text-sm">
                 {enquiryBenefits.map((b) => (
                   <li key={b} className="flex gap-3">
-                    <span className="mt-2 h-1 w-3 shrink-0 bg-gold" aria-hidden />
+                    <span className="mt-2 h-1 w-3 shrink-0 bg-summit" aria-hidden />
                     {b}
                   </li>
                 ))}

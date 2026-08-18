@@ -3,7 +3,7 @@ import { monthLabels } from "@/data/destinations";
 export type Rating = "peak" | "good" | "no";
 
 const ratingClass: Record<Rating, string> = {
-  peak: "bg-canopy text-cream",
+  peak: "bg-canopy text-mist",
   good: "bg-canopy/25 text-ink",
   no: "bg-border/60 text-muted-foreground",
 };

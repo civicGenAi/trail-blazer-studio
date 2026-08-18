@@ -73,7 +73,7 @@ function DestinationDetail() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[58vh] items-end">
+      <section className="on-dark relative isolate flex min-h-[58vh] items-end">
         <img
           src={d.hero_image}
           alt={d.name}
@@ -86,20 +86,20 @@ function DestinationDetail() {
         <div className="container-editorial pb-14 pt-28">
           <nav
             aria-label="Breadcrumb"
-            className="rise flex items-center gap-2 text-xs text-cream/60"
+            className="rise flex items-center gap-2 text-xs text-mist/60"
           >
-            <Link to="/" className="hover:text-cream">
+            <Link to="/" className="hover:text-mist">
               Home
             </Link>
             <ChevronRight className="h-3 w-3" aria-hidden />
-            <Link to="/destinations" className="hover:text-cream">
+            <Link to="/destinations" className="hover:text-mist">
               Destinations
             </Link>
             <ChevronRight className="h-3 w-3" aria-hidden />
-            <span className="text-cream/85">{d.name}</span>
+            <span className="text-mist/85">{d.name}</span>
           </nav>
-          <p className="rise-1 field-note mt-6 text-gold">{d.region}</p>
-          <h1 className="rise-2 mt-3 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-7xl">
+          <p className="rise-1 field-note mt-6 text-summit">{d.region}</p>
+          <h1 className="rise-2 mt-3 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-7xl">
             {d.name}
           </h1>
           <TrailLine className="rise-3 mt-7 w-full max-w-md" />
@@ -108,13 +108,13 @@ function DestinationDetail() {
 
       {/* Quick facts */}
       {d.quick_facts && (
-        <section className="grain-dark border-t border-cream/10">
+        <section className="grain-dark border-t border-mist/10">
           <div className="container-editorial py-10">
-            <dl className="grid grid-cols-2 gap-px bg-cream/10 md:grid-cols-4">
+            <dl className="grid grid-cols-2 gap-px bg-mist/10 md:grid-cols-4">
               {d.quick_facts.map((f) => (
                 <div key={f.label} className="bg-savanna p-6">
-                  <dt className="field-note text-cream/50">{f.label}</dt>
-                  <dd className="mt-2 font-mono text-3xl text-cream">{f.value}</dd>
+                  <dt className="field-note text-mist/50">{f.label}</dt>
+                  <dd className="mt-2 font-mono text-3xl text-mist">{f.value}</dd>
                 </div>
               ))}
             </dl>
@@ -197,7 +197,7 @@ function DestinationDetail() {
       <section className="grain-dark py-16">
         <div className="container-editorial">
           <p className="eyebrow">Also on the circuit</p>
-          <ul className="mt-8 grid gap-px bg-cream/10 md:grid-cols-3">
+          <ul className="mt-8 grid gap-px bg-mist/10 md:grid-cols-3">
             {others.map((o) => (
               <li key={o.slug} className="bg-savanna">
                 <Link
@@ -205,9 +205,9 @@ function DestinationDetail() {
                   params={{ slug: o.slug }}
                   className="flex h-full flex-col p-6 transition-colors duration-300 hover:bg-savanna-deep"
                 >
-                  <span className="field-note text-cream/45">{o.region}</span>
-                  <span className="mt-2 font-display text-xl text-cream">{o.name}</span>
-                  <span className="mt-3 text-xs text-cream/55">{o.best_time}</span>
+                  <span className="field-note text-mist/45">{o.region}</span>
+                  <span className="mt-2 font-display text-xl text-mist">{o.name}</span>
+                  <span className="mt-3 text-xs text-mist/55">{o.best_time}</span>
                 </Link>
               </li>
             ))}

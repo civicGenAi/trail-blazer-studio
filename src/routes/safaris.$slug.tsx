@@ -98,7 +98,7 @@ function TourDetail() {
   return (
     <>
       {/* Gallery */}
-      <section className="bg-savanna">
+      <section className="on-dark bg-savanna">
         <div className="relative">
           <img
             src={tour.gallery[shot] ?? tour.hero_image}
@@ -122,7 +122,7 @@ function TourDetail() {
                   aria-label={`Show photo ${i + 1} of ${tour.gallery.length}`}
                   aria-current={i === shot}
                   className={`h-14 w-20 shrink-0 overflow-hidden border-2 transition-colors duration-300 ${
-                    i === shot ? "border-gold" : "border-cream/30 hover:border-cream/70"
+                    i === shot ? "border-summit" : "border-mist/30 hover:border-mist/70"
                   }`}
                 >
                   <img
@@ -136,7 +136,7 @@ function TourDetail() {
                 </button>
               ))}
             </div>
-            <p className="field-note shrink-0 text-cream/70">
+            <p className="field-note shrink-0 text-mist/70">
               {String(shot + 1).padStart(2, "0")} / {String(tour.gallery.length).padStart(2, "0")}
             </p>
           </div>
@@ -146,23 +146,23 @@ function TourDetail() {
       {/* Breadcrumb + title strip */}
       <section className="grain-dark py-10">
         <div className="container-editorial">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-cream/50">
-            <Link to="/" className="hover:text-cream">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-mist/50">
+            <Link to="/" className="hover:text-mist">
               Home
             </Link>
             <ChevronRight className="h-3 w-3" />
-            <Link to="/safaris" className="hover:text-cream">
+            <Link to="/safaris" className="hover:text-mist">
               Safaris
             </Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-cream/80">{tour.title}</span>
+            <span className="text-mist/80">{tour.title}</span>
           </nav>
           <h1 className="mt-5 max-w-3xl text-3xl sm:text-4xl lg:text-6xl">{tour.title}</h1>
-          <p className="field-note mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-cream/60">
+          <p className="field-note mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-mist/60">
             <span>{tour.type}</span>
             <span>{tour.destination}</span>
             <span>{tour.difficulty}</span>
-            <span className="flex items-center gap-1.5 text-gold">
+            <span className="flex items-center gap-1.5 text-summit">
               <Star className="h-3.5 w-3.5" aria-hidden /> {tour.rating.toFixed(1)} / {tour.reviews}{" "}
               reviews
             </span>
@@ -194,7 +194,7 @@ function TourDetail() {
           <h2 className="mt-14 text-3xl">Highlights</h2>
           <ul className="mt-5 grid gap-3 md:grid-cols-2">
             {tour.highlights.map((h) => (
-              <li key={h} className="flex gap-3 border-l-2 border-gold pl-4 text-sm">
+              <li key={h} className="flex gap-3 border-l-2 border-summit pl-4 text-sm">
                 {h}
               </li>
             ))}
@@ -235,7 +235,7 @@ function TourDetail() {
                 onClick={() => setActiveDay(d.day_number)}
                 className={`field-note border px-3 py-2 transition-colors duration-300 ${
                   activeDay === d.day_number
-                    ? "border-gold text-gold"
+                    ? "border-summit text-summit"
                     : "border-border text-muted-foreground hover:border-primary"
                 }`}
               >
@@ -288,7 +288,7 @@ function TourDetail() {
             </p>
             <Link
               to="/contact"
-              className="mt-6 block border border-gold px-4 py-3 text-center text-sm text-gold transition-colors duration-300 hover:bg-gold/10"
+              className="mt-6 block border border-summit px-4 py-3 text-center text-sm text-summit transition-colors duration-300 hover:bg-summit/10"
             >
               Book This Safari
             </Link>
@@ -332,11 +332,11 @@ function TourDetail() {
 function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div>
-      <dt className="field-note flex items-center gap-2 text-cream/50">
-        <span className="text-gold">{icon}</span>
+      <dt className="field-note flex items-center gap-2 text-mist/50">
+        <span className="text-summit">{icon}</span>
         {label}
       </dt>
-      <dd className="mt-1.5 text-sm text-cream">{value}</dd>
+      <dd className="mt-1.5 text-sm text-mist">{value}</dd>
     </div>
   );
 }

@@ -8,18 +8,18 @@ import { useState } from "react";
 export function AccordionRow({ q, a, dark = false }: { q: string; a: string; dark?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={`border-b ${dark ? "border-cream/12" : "border-border"}`}>
+    <div className={`border-b ${dark ? "border-mist/12" : "border-border"}`}>
       <h3>
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           className={`flex w-full items-start justify-between gap-6 py-5 text-left transition-colors duration-300 ${
-            dark ? "text-cream hover:text-gold" : "hover:text-primary"
+            dark ? "text-mist hover:text-summit" : "hover:text-primary"
           }`}
         >
           <span className="text-lg">{q}</span>
-          <span className="mt-1 shrink-0 text-gold">
+          <span className="mt-1 shrink-0 text-summit">
             {open ? (
               <Minus className="h-4 w-4" aria-hidden />
             ) : (
@@ -31,7 +31,7 @@ export function AccordionRow({ q, a, dark = false }: { q: string; a: string; dar
       {open && (
         <p
           className={`max-w-2xl pb-6 text-sm leading-relaxed ${
-            dark ? "text-cream/70" : "text-muted-foreground"
+            dark ? "text-mist/70" : "text-muted-foreground"
           }`}
         >
           {a}

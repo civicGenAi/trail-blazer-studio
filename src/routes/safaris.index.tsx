@@ -144,10 +144,10 @@ function SafarisIndex() {
         <div className="container-editorial">
           <p className="eyebrow">Safari tours</p>
           <TrailLine className="mt-4 w-full max-w-xs" />
-          <h1 className="mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-6xl">
             Six itineraries, run with our own vehicles and guides
           </h1>
-          <p className="mt-5 max-w-xl text-cream/70">
+          <p className="mt-5 max-w-xl text-mist/70">
             Private departures only, maximum six guests per vehicle. Park fees, full board and the
             4WD are in every price below.
           </p>
@@ -206,7 +206,7 @@ function SafarisIndex() {
                   <button
                     type="button"
                     onClick={() => set(key)(ANY)}
-                    className="inline-flex items-center gap-1.5 border border-border bg-background px-3 py-1.5 text-xs transition-colors duration-300 hover:border-gold"
+                    className="inline-flex items-center gap-1.5 border border-border bg-background px-3 py-1.5 text-xs transition-colors duration-300 hover:border-summit"
                   >
                     {value}
                     <X className="h-3 w-3 text-muted-foreground" aria-hidden />

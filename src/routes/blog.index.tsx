@@ -64,10 +64,10 @@ function BlogIndex() {
         <div className="container-editorial">
           <p className="rise eyebrow">Field notes</p>
           <TrailLine className="rise-1 mt-4 w-full max-w-xs" />
-          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-6xl">
             What we learned <em className="font-normal italic">running the route</em>
           </h1>
-          <p className="rise-3 mt-6 max-w-xl text-cream/70">
+          <p className="rise-3 mt-6 max-w-xl text-mist/70">
             Written from our own trip logs. Where a post quotes a success rate or a crossing
             frequency, the departures it is drawn from are named.
           </p>
@@ -85,7 +85,7 @@ function BlogIndex() {
                   aria-pressed={category === c}
                   className={`border px-4 py-2 text-sm transition-colors duration-300 ${
                     category === c
-                      ? "border-gold text-gold"
+                      ? "border-summit text-summit"
                       : "border-border text-muted-foreground hover:border-primary"
                   }`}
                 >
@@ -120,7 +120,7 @@ function BlogIndex() {
                       />
                     </div>
                     <div>
-                      <p className="field-note text-gold">
+                      <p className="field-note text-summit">
                         Latest · {lead.category} · {lead.readMinutes} min
                       </p>
                       <h2 className="mt-4 text-4xl md:text-5xl">{lead.title}</h2>

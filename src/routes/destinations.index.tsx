@@ -66,12 +66,12 @@ function DestinationsPage() {
           <div>
             <p className="rise eyebrow">Destinations</p>
             <TrailLine className="rise-1 mt-3 w-24" />
-            <h1 className="rise-2 mt-5 text-4xl text-cream sm:text-5xl lg:text-6xl">
+            <h1 className="rise-2 mt-5 text-4xl text-mist sm:text-5xl lg:text-6xl">
               Six places, two airports,
               <br />
               <em className="font-normal italic">one loop</em>
             </h1>
-            <p className="rise-3 mt-5 max-w-md text-cream/70">
+            <p className="rise-3 mt-5 max-w-md text-mist/70">
               Everything on this page is within a day of Arusha except Zanzibar, which is an hour
               and twenty by air. The map is schematic: it shows the order a route runs in, not
               scale.
@@ -124,7 +124,7 @@ function DestinationsPage() {
                     loading="lazy"
                   />
                   {d.featured && (
-                    <span className="field-note absolute left-0 top-4 border-y border-r border-gold/50 bg-savanna/90 px-3 py-1.5 text-gold">
+                    <span className="field-note absolute left-0 top-4 border-y border-r border-summit/50 bg-savanna/90 px-3 py-1.5 text-summit">
                       Featured
                     </span>
                   )}
@@ -200,7 +200,7 @@ function DestinationsPage() {
             <ul className="mt-7 space-y-3">
               {enquiryBenefits.map((b) => (
                 <li key={b} className="flex gap-3 text-sm">
-                  <span className="mt-2 h-1 w-3 shrink-0 bg-gold" aria-hidden />
+                  <span className="mt-2 h-1 w-3 shrink-0 bg-summit" aria-hidden />
                   {b}
                 </li>
               ))}
@@ -240,10 +240,10 @@ function KilimanjaroSection() {
       <div className="container-editorial">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">In detail</p>
-          <h2 className="mt-4 text-3xl text-cream sm:text-4xl lg:text-6xl">
+          <h2 className="mt-4 text-3xl text-mist sm:text-4xl lg:text-6xl">
             Kilimanjaro, <em className="font-normal italic">zone by zone</em>
           </h2>
-          <p className="mt-5 text-cream/75">
+          <p className="mt-5 text-mist/75">
             Five ecological zones in five days of walking, from farmland at 800 m to permanent ice
             at 5,895 m. The climb is a walk, with no technical sections, but the altitude is the
             whole problem to solve.
@@ -252,13 +252,13 @@ function KilimanjaroSection() {
 
         {/* Wildlife by elevation zone */}
         <Reveal className="mt-12" delay={70}>
-          <ol className="grid gap-px bg-cream/10 md:grid-cols-5">
+          <ol className="grid gap-px bg-mist/10 md:grid-cols-5">
             {kilimanjaroZones.map((z) => (
               <li key={z.zone} className="bg-savanna/85 p-5 backdrop-blur">
-                <Mountain className="h-5 w-5 text-gold" aria-hidden />
-                <p className="mt-4 text-lg text-cream">{z.zone}</p>
-                <p className="field-note mt-1.5 text-gold">{z.range}</p>
-                <p className="mt-2 text-xs text-cream/60">{z.life}</p>
+                <Mountain className="h-5 w-5 text-summit" aria-hidden />
+                <p className="mt-4 text-lg text-mist">{z.zone}</p>
+                <p className="field-note mt-1.5 text-summit">{z.range}</p>
+                <p className="mt-2 text-xs text-mist/60">{z.life}</p>
               </li>
             ))}
           </ol>
@@ -267,24 +267,24 @@ function KilimanjaroSection() {
         {/* Things to do + best-time strip */}
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <Reveal>
-            <p className="field-note text-cream/50">Things to do</p>
-            <dl className="mt-4 grid grid-cols-2 gap-px bg-cream/10 sm:grid-cols-4">
+            <p className="field-note text-mist/50">Things to do</p>
+            <dl className="mt-4 grid grid-cols-2 gap-px bg-mist/10 sm:grid-cols-4">
               {kilimanjaroActivities.map((a) => (
                 <div key={a.label} className="bg-savanna/85 p-5 backdrop-blur">
-                  <dd className="font-mono text-3xl text-cream">{a.value}</dd>
-                  <dt className="field-note mt-2 text-cream/50">{a.label}</dt>
+                  <dd className="font-mono text-3xl text-mist">{a.value}</dd>
+                  <dt className="field-note mt-2 text-mist/50">{a.label}</dt>
                 </div>
               ))}
             </dl>
           </Reveal>
           <Reveal
             delay={80}
-            className="min-w-0 border border-cream/15 bg-savanna/85 p-6 backdrop-blur"
+            className="min-w-0 border border-mist/15 bg-savanna/85 p-6 backdrop-blur"
           >
-            <div className="[&_.field-note]:text-cream/50">
+            <div className="[&_.field-note]:text-mist/50">
               <MonthStripMini months={kilimanjaroMonths} label="Trekking conditions by month" />
             </div>
-            <p className="mt-4 text-xs text-cream/60">
+            <p className="mt-4 text-xs text-mist/60">
               April, May and November are the rains. The routes stay open, but the rock is wet and
               summit success drops.
             </p>
@@ -293,12 +293,12 @@ function KilimanjaroSection() {
 
         {/* Quick facts + accommodation tiers */}
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <Reveal className="min-w-0 border border-cream/15 bg-savanna/85 p-7 backdrop-blur">
-            <h3 className="text-2xl text-cream">Quick facts</h3>
-            <dl className="mt-5 divide-y divide-cream/10">
+          <Reveal className="min-w-0 border border-mist/15 bg-savanna/85 p-7 backdrop-blur">
+            <h3 className="text-2xl text-mist">Quick facts</h3>
+            <dl className="mt-5 divide-y divide-mist/10">
               {kilimanjaroFacts.map((f) => (
                 <div key={f.label} className="flex items-baseline justify-between gap-6 py-3">
-                  <dt className="text-sm text-cream/65">{f.label}</dt>
+                  <dt className="text-sm text-mist/65">{f.label}</dt>
                   <dd className="price text-base">{f.value}</dd>
                 </div>
               ))}
@@ -307,29 +307,29 @@ function KilimanjaroSection() {
 
           <Reveal
             delay={80}
-            className="min-w-0 border border-cream/15 bg-savanna/85 p-7 backdrop-blur"
+            className="min-w-0 border border-mist/15 bg-savanna/85 p-7 backdrop-blur"
           >
-            <h3 className="text-2xl text-cream">Where you sleep</h3>
+            <h3 className="text-2xl text-mist">Where you sleep</h3>
             <div className="mt-5 overflow-x-auto">
               <table className="w-full min-w-[17rem] border-collapse text-left">
                 <thead>
-                  <tr className="border-b border-cream/15">
-                    <th scope="col" className="field-note py-3 text-cream/50">
+                  <tr className="border-b border-mist/15">
+                    <th scope="col" className="field-note py-3 text-mist/50">
                       Tier
                     </th>
-                    <th scope="col" className="field-note py-3 text-cream/50">
+                    <th scope="col" className="field-note py-3 text-mist/50">
                       Basis
                     </th>
-                    <th scope="col" className="field-note py-3 text-right text-cream/50">
+                    <th scope="col" className="field-note py-3 text-right text-mist/50">
                       Band
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {kilimanjaroLodging.map((l) => (
-                    <tr key={l.tier} className="border-b border-cream/10 last:border-0">
-                      <td className="py-3 text-sm text-cream">{l.tier}</td>
-                      <td className="py-3 text-xs text-cream/60">{l.basis}</td>
+                    <tr key={l.tier} className="border-b border-mist/10 last:border-0">
+                      <td className="py-3 text-sm text-mist">{l.tier}</td>
+                      <td className="py-3 text-xs text-mist/60">{l.basis}</td>
                       <td className="price py-3 text-right text-sm">{l.band}</td>
                     </tr>
                   ))}
@@ -343,7 +343,7 @@ function KilimanjaroSection() {
               <Link
                 to="/safaris/$slug"
                 params={{ slug: "machame-route-kilimanjaro" }}
-                className="inline-flex items-center gap-2 px-2 py-3 text-sm text-cream/80 hover:text-cream"
+                className="inline-flex items-center gap-2 px-2 py-3 text-sm text-mist/80 hover:text-mist"
               >
                 Machame in seven days <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>

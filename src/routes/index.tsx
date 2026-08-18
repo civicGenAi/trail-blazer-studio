@@ -40,7 +40,7 @@ function Index() {
       <Hero priceFloor={priceFloor} />
 
       {/* Trust bar */}
-      <section className="grain-dark border-t border-cream/10">
+      <section className="grain-dark border-t border-mist/10">
         <div className="container-editorial py-10">
           <StatStrip dark stats={trustPoints} />
         </div>
@@ -98,7 +98,7 @@ function Index() {
                   <Link
                     to="/safaris"
                     search={{ type: t }}
-                    className="inline-block border border-border bg-background px-4 py-2.5 text-sm transition-colors duration-300 hover:border-gold"
+                    className="inline-block border border-border bg-background px-4 py-2.5 text-sm transition-colors duration-300 hover:border-summit"
                   >
                     {t}
                   </Link>
@@ -135,7 +135,7 @@ function Index() {
           <ol className="grid gap-px bg-border sm:grid-cols-2">
             {whyUs.map((w, i) => (
               <Reveal key={w.title} as="li" delay={i * 70} className="bg-background p-7">
-                <span className="field-note text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <span className="field-note text-summit">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-4 text-2xl">{w.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{w.body}</p>
               </Reveal>
@@ -159,10 +159,10 @@ function Index() {
         <div className="container-editorial">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">The Great Migration</p>
-            <h2 className="mt-4 text-3xl text-cream sm:text-4xl lg:text-6xl">
+            <h2 className="mt-4 text-3xl text-mist sm:text-4xl lg:text-6xl">
               Right now the herds are at <em className="font-normal italic">{current.region}</em>
             </h2>
-            <p className="mt-5 max-w-xl text-cream/75">
+            <p className="mt-5 max-w-xl text-mist/75">
               {current.line} The migration is a continuous 800 km loop through the Serengeti–Mara
               ecosystem, so the useful question is not when to go but where to sleep in the month
               you can travel.
@@ -200,7 +200,7 @@ function Index() {
                 delay={i * 90}
                 className="flex flex-col bg-background p-8"
               >
-                <Quote className="h-6 w-6 text-gold" aria-hidden />
+                <Quote className="h-6 w-6 text-summit" aria-hidden />
                 <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed">
                   {t.quote}
                 </blockquote>
@@ -220,10 +220,10 @@ function Index() {
           <Reveal>
             <p className="eyebrow">Next step</p>
             <TrailLine className="mt-3 w-24" />
-            <h2 className="mt-5 text-4xl text-cream md:text-5xl">
+            <h2 className="mt-5 text-4xl text-mist md:text-5xl">
               Send dates and group size. We reply within one working day.
             </h2>
-            <p className="mt-5 max-w-xl text-cream/70">
+            <p className="mt-5 max-w-xl text-mist/70">
               You get a day-by-day draft with named lodges, drive times and an itemised price. Two
               rounds of changes are included, and nothing is payable until you confirm.
             </p>
@@ -244,7 +244,7 @@ function Index() {
 
 function Hero({ priceFloor }: { priceFloor: number }) {
   return (
-    <section className="relative isolate flex min-h-[86vh] items-end overflow-hidden">
+    <section className="on-dark relative isolate flex min-h-[86vh] items-end overflow-hidden">
       <img
         src={images.heroSavanna}
         alt="Acacia and open grassland on the Serengeti plains at first light"
@@ -263,13 +263,13 @@ function Hero({ priceFloor }: { priceFloor: number }) {
           <TrailLine className="w-full" />
         </div>
 
-        <h1 className="rise-2 mt-7 max-w-4xl text-5xl text-cream sm:text-6xl lg:text-8xl">
+        <h1 className="rise-2 mt-7 max-w-4xl text-5xl text-mist sm:text-6xl lg:text-8xl">
           Explore Tanzania.
           <br />
           <em className="font-normal italic">Experience</em> the wild.
         </h1>
 
-        <p className="rise-3 mt-7 max-w-xl text-lg text-cream/80">
+        <p className="rise-3 mt-7 max-w-xl text-lg text-mist/80">
           Northern-circuit safaris, Great Migration trips and Kilimanjaro routes, run from Arusha
           with our own vehicles and salaried guides. From ${priceFloor.toLocaleString()} per person.
         </p>
@@ -283,7 +283,7 @@ function Hero({ priceFloor }: { priceFloor: number }) {
           </Link>
         </div>
 
-        <dl className="rise-5 mt-14 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 border-t border-cream/15 pt-7 sm:grid-cols-4">
+        <dl className="rise-5 mt-14 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 border-t border-mist/15 pt-7 sm:grid-cols-4">
           {[
             { k: "Parks", v: "6" },
             { k: "Itineraries", v: String(tours.length) },
@@ -291,8 +291,8 @@ function Hero({ priceFloor }: { priceFloor: number }) {
             { k: "Reply time", v: "1 day" },
           ].map((s) => (
             <div key={s.k}>
-              <dt className="field-note text-cream/50">{s.k}</dt>
-              <dd className="mt-1.5 font-mono text-2xl text-cream">{s.v}</dd>
+              <dt className="field-note text-mist/50">{s.k}</dt>
+              <dd className="mt-1.5 font-mono text-2xl text-mist">{s.v}</dd>
             </div>
           ))}
         </dl>

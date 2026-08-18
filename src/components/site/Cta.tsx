@@ -10,10 +10,10 @@ import { WHATSAPP_URL } from "./nav-data";
 const base =
   "inline-flex items-center justify-center gap-2 px-5 py-3 text-sm transition-colors duration-300";
 
-export const ctaGold = `${base} border border-gold text-gold hover:bg-gold/10`;
+export const ctaGold = `${base} border border-summit text-summit hover:bg-summit/10`;
 export const ctaSolid = `${base} bg-primary text-primary-foreground hover:bg-savanna`;
 export const ctaGhostLight = `${base} border border-border text-foreground hover:border-primary`;
-export const ctaGhostDark = `${base} border border-cream/40 text-cream hover:border-cream`;
+export const ctaGhostDark = `${base} border border-mist/40 text-mist hover:border-mist`;
 
 export function WhatsAppLink({
   message,

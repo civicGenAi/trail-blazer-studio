@@ -21,10 +21,10 @@ export function TourCard({
           height={900}
           loading="lazy"
         />
-        <span className="absolute left-0 top-4 flex items-center gap-1.5 border-y border-r border-gold/50 bg-savanna/90 px-3 py-1.5 text-xs text-cream">
-          <Star className="h-3.5 w-3.5 text-gold" aria-hidden />
+        <span className="absolute left-0 top-4 flex items-center gap-1.5 border-y border-r border-summit/50 bg-savanna/90 px-3 py-1.5 text-xs text-mist">
+          <Star className="h-3.5 w-3.5 text-summit" aria-hidden />
           <span className="font-mono">{tour.rating.toFixed(1)}</span>
-          <span className="text-cream/50">({tour.reviews})</span>
+          <span className="text-mist/50">({tour.reviews})</span>
         </span>
       </div>
 
@@ -42,7 +42,7 @@ export function TourCard({
         <ul className="mt-4 space-y-1.5 text-sm">
           {tour.highlights.slice(0, 3).map((h) => (
             <li key={h} className="flex gap-2">
-              <span className="mt-2 h-1 w-3 shrink-0 bg-gold" aria-hidden />
+              <span className="mt-2 h-1 w-3 shrink-0 bg-summit" aria-hidden />
               <span>{h}</span>
             </li>
           ))}

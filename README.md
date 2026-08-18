@@ -58,5 +58,8 @@ the sitemap pick it up automatically.
 
 ## Design system
 
-Five colors, three type roles, and one signature device: a dotted trail line that
-threads the site. `AGENTS.md` has the full rules, including the copy voice.
+Colours are sampled from the logo rather than chosen to sit near it: a deep
+forest green for the wordmark, a lighter lime from the mountain, and grounds
+derived on the same hue. Three type roles, and one signature device: a dotted
+trail line that threads the site. `AGENTS.md` has the full rules, including the
+copy voice.
