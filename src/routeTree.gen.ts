@@ -10,33 +10,51 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SafarisRouteImport } from './routes/safaris'
+import { Route as SafarisIndexRouteImport } from './routes/safaris.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SafarisRoute = SafarisRouteImport.update({
+  id: '/safaris',
+  path: '/safaris',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafarisIndexRoute = SafarisIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SafarisRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/safaris': typeof SafarisRouteWithChildren
+  '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/safaris': typeof SafarisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/safaris': typeof SafarisRouteWithChildren
+  '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/safaris' | '/safaris/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/safaris'
+  id: '__root__' | '/' | '/safaris' | '/safaris/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SafarisRoute: typeof SafarisRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +66,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/safaris': {
+      id: '/safaris'
+      path: '/safaris'
+      fullPath: '/safaris'
+      preLoaderRoute: typeof SafarisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safaris/': {
+      id: '/safaris/'
+      path: '/'
+      fullPath: '/safaris/'
+      preLoaderRoute: typeof SafarisIndexRouteImport
+      parentRoute: typeof SafarisRoute
+    }
   }
 }
 
+interface SafarisRouteChildren {
+  SafarisIndexRoute: typeof SafarisIndexRoute
+}
+
+const SafarisRouteChildren: SafarisRouteChildren = {
+  SafarisIndexRoute: SafarisIndexRoute,
+}
+
+const SafarisRouteWithChildren =
+  SafarisRoute._addFileChildren(SafarisRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SafarisRoute: SafarisRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
