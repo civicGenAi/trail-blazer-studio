@@ -5,6 +5,7 @@ import { TrailLine, TrailNode } from "@/components/site/TrailLine";
 import { WHATSAPP_URL } from "@/components/site/nav-data";
 import { TourCard } from "@/components/site/TourCard";
 import { getTour, tours } from "@/data/tours";
+import { absolute, breadcrumbs, jsonLd, KEYWORDS, seo, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/safaris/$slug")({
   loader: ({ params }) => {
@@ -14,16 +15,73 @@ export const Route = createFileRoute("/safaris/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Safari not found" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Safari not found" }, { name: "robots", content: "noindex" }],
+      };
     }
     const t = loaderData.tour;
-    const title = `${t.title} — ${t.duration_days} days from $${t.price_from_usd.toLocaleString()}`;
+    const path = `/safaris/${t.slug}`;
+    const { meta, links } = seo({
+      title: `${t.title}: ${t.duration_days} Days from $${t.price_from_usd.toLocaleString()}`,
+      description: `${t.teaser} Maximum ${t.max_pax} guests, park fees and ${t.meal_plan.toLowerCase()} included. Rated ${t.rating.toFixed(1)} from ${t.reviews} reviews.`,
+      path,
+      image: "/og/safaris.jpg",
+      type: "product",
+      keywords: [
+        t.title,
+        `${t.destination} safari`,
+        `${t.duration_days} day Tanzania safari`,
+        `${t.type} safari Tanzania`,
+        ...KEYWORDS.core,
+      ],
+    });
     return {
-      meta: [
-        { title },
-        { name: "description", content: t.teaser },
-        { property: "og:title", content: title },
-        { property: "og:description", content: t.teaser },
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Safari tours", path: "/safaris" },
+            { name: t.title, path },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          name: t.title,
+          description: t.about_text,
+          url: absolute(path),
+          touristType: t.type,
+          provider: { "@id": `${SITE_URL}/#organization` },
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: t.itinerary.length,
+            itemListElement: t.itinerary.map((d) => ({
+              "@type": "ListItem",
+              position: d.day_number,
+              item: {
+                "@type": "TouristDestination",
+                name: d.title,
+                description: d.narrative_text,
+              },
+            })),
+          },
+          offers: {
+            "@type": "Offer",
+            price: t.price_from_usd,
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: absolute(path),
+            priceValidUntil: "2026-12-31",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: t.rating.toFixed(1),
+            reviewCount: t.reviews,
+            bestRating: "5",
+          },
+        }),
       ],
     };
   },
@@ -44,7 +102,7 @@ function TourDetail() {
         <div className="relative">
           <img
             src={tour.gallery[shot] ?? tour.hero_image}
-            alt={`${tour.title} — photograph ${shot + 1} of ${tour.gallery.length}`}
+            alt={`${tour.title}, photograph ${shot + 1} of ${tour.gallery.length}`}
             className="h-[52vh] w-full object-cover md:h-[64vh]"
             width={1920}
             height={1080}
@@ -206,7 +264,7 @@ function TourDetail() {
                 </div>
                 <div>
                   <dt className="field-note text-muted-foreground">Activities</dt>
-                  <dd className="mt-1 text-sm">{day.activities.join(", ") || "—"}</dd>
+                  <dd className="mt-1 text-sm">{day.activities.join(", ") || "None scheduled"}</dd>
                 </div>
               </dl>
               {day.notes.length > 0 && (

@@ -43,7 +43,7 @@ export function DestinationMap({ onSelect }: { onSelect?: (slug: string) => void
           />
         </svg>
 
-        {/* Arusha — where every route starts */}
+        {/* Arusha, where every route starts */}
         <span
           style={{ left: `${originPin.pin.x}%`, top: `${originPin.pin.y}%` }}
           className="absolute -translate-x-1/2 -translate-y-1/2"

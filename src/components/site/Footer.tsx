@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoDark from "@/assets/logo-black.png.asset.json";
+import logoFull from "@/assets/logo-reversed.png";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { WHATSAPP_URL, browseByType, moreLinks } from "./nav-data";
 import { company } from "@/data/site";
@@ -19,11 +19,11 @@ export function Footer() {
       <div className="container-editorial grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
         <div>
           <img
-            src={logoDark.url}
-            alt="Arusha Wildlife Safaris"
-            className="h-16 w-auto"
-            width={240}
-            height={160}
+            src={logoFull}
+            alt="Arusha Wildlife Safaris. Explore Tanzania, Experience the Wild"
+            className="h-20 w-auto"
+            width={463}
+            height={314}
             loading="lazy"
           />
           <p className="mt-4 max-w-xs text-sm text-cream/60">

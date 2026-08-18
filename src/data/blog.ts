@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
       "Crossings run from late June to late October, but the useful question is which bank to be sitting on. Here is what our 2023–2025 trip logs show.",
     body: [
       {
-        p: "A crossing is not scheduled. Herds gather on a bank, wait — sometimes for six hours — and then move in under four minutes. Nothing about that is predictable to the day, which is why the honest planning question is not 'when will it happen' but 'how many hours can I be in position'.",
+        p: "A crossing is not scheduled. Herds gather on a bank and wait, sometimes for six hours, then move in under four minutes. Nothing about that is predictable to the day, which is why the honest planning question is not 'when will it happen' but 'how many hours can I be in position'.",
       },
       {
         h: "What the logs show",
@@ -107,7 +107,7 @@ export const blogPosts: BlogPost[] = [
           "Herds are stationary, so you work the same subjects across several days.",
           "Off-road driving is permitted in the Ndutu concession, unlike the national park.",
           "Cheetah hunt in daylight on open ground with clean backgrounds.",
-          "Predator density is the highest of the year — lion, hyena, cheetah and jackal within one plain.",
+          "Predator density is the highest of the year: lion, hyena, cheetah and jackal within one plain.",
         ],
       },
       {
@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         h: "Where the rest goes",
-        p: "Accommodation is the next largest line, then vehicle and fuel — a northern circuit covers about 1,180 km, most of it on corrugated gravel. Guide salary, workshop time and insurance make up the balance.",
+        p: "Accommodation is the next largest line, then vehicle and fuel. A northern circuit covers about 1,180 km, most of it on corrugated gravel. Guide salary, workshop time and insurance make up the balance.",
       },
     ],
     related_tour_slugs: ["classic-northern-circuit"],
@@ -173,7 +173,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         h: "Ngorongoro Crater",
-        p: "Consistent year-round, because the caldera holds roughly 25,000 animals inside 260 km² and they do not leave. It is the most reliable single day of game viewing in Tanzania and the best black rhino odds in the country. It is also the busiest — expect other vehicles at every sighting, and a 06:30 descent to get ahead of them.",
+        p: "Consistent year-round, because the caldera holds roughly 25,000 animals inside 260 km² and they do not leave. It is the most reliable single day of game viewing in Tanzania and the best black rhino odds in the country. It is also the busiest: expect other vehicles at every sighting, and a 06:30 descent to get ahead of them.",
       },
       {
         h: "The short answer",
@@ -207,10 +207,10 @@ export const blogPosts: BlogPost[] = [
       {
         h: "Bag and quantities",
         list: [
-          "Soft duffel, 15 kg — hard cases do not fit the vehicle load bay or light aircraft.",
+          "Soft duffel, 15 kg. Hard cases do not fit the vehicle load bay or light aircraft.",
           "Three neutral shirts and two trousers; laundry runs at most lodges for USD 2–4 an item.",
           "Closed shoes for the crater floor and Barranco-style scrambles, sandals for camp.",
-          "8×42 binoculars per person, not one pair shared — the single best-value item you will bring.",
+          "8×42 binoculars per person, not one pair shared. It is the single best-value item you will bring.",
           "Dust-proof bag or dry bag for camera bodies; the gravel roads produce fine dust for six hours a day.",
         ],
       },

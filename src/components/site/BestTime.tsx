@@ -73,7 +73,7 @@ export function BestTimeMatrix({ rows }: { rows: { activity: string; months: Rat
                       className={`flex h-8 items-center justify-center font-mono text-[0.6rem] ${ratingClass[r]}`}
                     >
                       <span className="sr-only">{`${monthLabels[i]}: ${ratingLabel[r]}`}</span>
-                      <span aria-hidden>{r === "peak" ? "●" : r === "good" ? "○" : "—"}</span>
+                      <span aria-hidden>{r === "peak" ? "●" : r === "good" ? "○" : "×"}</span>
                     </span>
                   </td>
                 ))}

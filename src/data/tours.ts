@@ -25,7 +25,7 @@ function day(d: Partial<ItineraryDay> & { day_number: number; title: string }): 
     route_from: "Arusha",
     route_to: "Arusha",
     distance_km: 0,
-    drive_time: "—",
+    drive_time: "n/a",
     narrative_text: "[CONTENT TBD]",
     meals_included: "B, L, D",
     activities: [],
@@ -88,7 +88,7 @@ export const tours: Tour[] = [
           "Depart Arusha at 07:30, cross the Ngorongoro Conservation Area, and drop into the Serengeti at Naabi Hill. Afternoon game drive along the Seronera river line.",
         meals_included: "L, D",
         activities: ["Naabi Hill viewpoint", "Afternoon game drive"],
-        notes: ["Long driving day — the flight to Seronera is available at USD 320 per person."],
+        notes: ["Long driving day. The flight to Seronera is available at USD 320 per person."],
       }),
       day({
         day_number: 2,
@@ -104,7 +104,7 @@ export const tours: Tour[] = [
       }),
       day({
         day_number: 3,
-        title: "Mara River — full day",
+        title: "Mara River, full day",
         lodge_name: "Lamai Serengeti Camp",
         route_from: "Kogatende",
         route_to: "Kogatende",
@@ -142,7 +142,7 @@ export const tours: Tour[] = [
       day({
         day_number: 6,
         title: "Crater descent and return to Arusha",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Ngorongoro",
         route_to: "Arusha",
         distance_km: 190,
@@ -175,7 +175,7 @@ export const tours: Tour[] = [
     about_text:
       "The standard northern loop, run at a slower pace than most operators: two nights per park instead of one, so you are not packing every morning. Covers 1,180 km in total.",
     highlights: [
-      "Two nights in each park — no single-night stops",
+      "Two nights in each park, no single-night stops",
       "Tarangire elephant herds of 100+ in the dry season",
       "Full six-hour crater descent",
       "Big Five possible in seven days",
@@ -262,7 +262,7 @@ export const tours: Tour[] = [
       day({
         day_number: 7,
         title: "Return to Arusha",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Ngorongoro",
         route_to: "Arusha",
         distance_km: 190,
@@ -383,7 +383,7 @@ export const tours: Tour[] = [
       day({
         day_number: 7,
         title: "Mweka Gate to Moshi",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Mweka Camp",
         route_to: "Moshi",
         distance_km: 10,
@@ -467,7 +467,7 @@ export const tours: Tour[] = [
       day({
         day_number: 4,
         title: "Return to Arusha",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Seronera",
         route_to: "Arusha",
         distance_km: 0,
@@ -570,7 +570,7 @@ export const tours: Tour[] = [
         route_from: "Matemwe",
         route_to: "Matemwe",
         distance_km: 0,
-        drive_time: "—",
+        drive_time: "n/a",
         narrative_text: "Free day on the coast.",
         meals_included: "B",
         activities: ["Beach"],
@@ -606,7 +606,7 @@ export const tours: Tour[] = [
         route_from: "Matemwe",
         route_to: "Matemwe",
         distance_km: 0,
-        drive_time: "—",
+        drive_time: "n/a",
         narrative_text: "Nothing scheduled.",
         meals_included: "B",
         activities: [],
@@ -614,7 +614,7 @@ export const tours: Tour[] = [
       day({
         day_number: 10,
         title: "Departure",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Matemwe",
         route_to: "Zanzibar airport",
         distance_km: 60,
@@ -707,7 +707,7 @@ export const tours: Tour[] = [
       day({
         day_number: 5,
         title: "Return to Arusha",
-        lodge_name: "—",
+        lodge_name: "Departure day",
         route_from: "Ndutu",
         route_to: "Arusha",
         distance_km: 300,

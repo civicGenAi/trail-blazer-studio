@@ -9,7 +9,7 @@
  * 5 named colors only:
  *   Savanna Night #14231C  --savanna
  *   Deep Canopy   #1F5C33  --canopy
- *   Trail Gold    #C8963C  --gold   (line, price, one CTA per screen — never a fill)
+ *   Trail Gold    #C8963C  --gold   (line, price, one CTA per screen, never a fill)
  *   Dust Cream    #EFE7D8  --cream
  *   Charcoal Ink  #201C16  --ink
  */
@@ -191,7 +191,7 @@
   }
 }
 
-/* The Trail Line — hand-drawn dotted route */
+/* The Trail Line: hand-drawn dotted route */
 @utility trail-dotted-x {
   background-image: repeating-linear-gradient(
     to right,
@@ -363,7 +363,7 @@
 
 /*
  * Scroll reveal. The hidden state is scoped to [data-js="on"], which an inline
- * head script sets before the body paints — so server-rendered HTML stays fully
+ * head script sets before the body paints, so server-rendered HTML stays fully
  * visible if scripts are blocked or fail, instead of rendering a blank page.
  */
 @utility reveal {

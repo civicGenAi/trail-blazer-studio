@@ -7,7 +7,7 @@ type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 /**
  * Client-side enquiry form. No backend is wired yet, so submission is
- * validated and acknowledged locally — the state text says exactly that
+ * validated and acknowledged locally, and the state text says exactly that
  * rather than implying an email was sent.
  */
 export function EnquiryForm({

@@ -6,23 +6,53 @@ import { Reveal } from "@/components/site/Reveal";
 import { TrailLine } from "@/components/site/TrailLine";
 import { enquiryBenefits } from "@/data/destinations";
 import { bookingSteps, company } from "@/data/site";
+import { breadcrumbs, jsonLd, KEYWORDS, seo, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — plan a Tanzania safari" },
-      {
-        name: "description",
-        content:
-          "Send dates and group size for a day-by-day draft with named lodges and an itemised price. We reply within one working day.",
-      },
-      { property: "og:title", content: "Plan a Tanzania safari" },
-      {
-        property: "og:description",
-        content: "One working day to a day-by-day draft. No deposit until you confirm.",
-      },
-    ],
-  }),
+  head: () => {
+    const { meta, links } = seo({
+      title: "Plan Your Tanzania Safari",
+      description:
+        "Send your dates and group size for a day-by-day draft with named lodges, drive times and an itemised price. We reply within one working day.",
+      path: "/contact",
+      image: "/og/contact.jpg",
+      keywords: [
+        ...KEYWORDS.brand,
+        "book a Tanzania safari",
+        "safari enquiry Arusha",
+        "custom safari quote",
+      ],
+    });
+    return {
+      meta,
+      links,
+      scripts: [
+        jsonLd(
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          url: `${SITE_URL}/contact`,
+          mainEntity: {
+            "@type": "TravelAgency",
+            name: SITE_NAME,
+            email: company.email,
+            telephone: "+255700000000",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Njiro Road",
+              addressLocality: "Arusha",
+              addressCountry: "TZ",
+            },
+          },
+        }),
+      ],
+    };
+  },
   component: ContactPage,
 });
 
@@ -104,7 +134,7 @@ function ContactPage() {
               </ul>
               <WhatsAppLink
                 className={`${ctaGhostLight} mt-7 w-full`}
-                message="Hello — I'd like to plan a Tanzania safari."
+                message="Hello, I'd like to plan a Tanzania safari."
               >
                 Prefer WhatsApp? Message us
               </WhatsAppLink>
