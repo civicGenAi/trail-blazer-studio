@@ -3,7 +3,13 @@ import { Star, Users, Utensils, Truck } from "lucide-react";
 import type { Tour } from "@/data/types";
 import { WHATSAPP_URL } from "./nav-data";
 
-export function TourCard({ tour, showItineraryPreview = false }: { tour: Tour; showItineraryPreview?: boolean }) {
+export function TourCard({
+  tour,
+  showItineraryPreview = false,
+}: {
+  tour: Tour;
+  showItineraryPreview?: boolean;
+}) {
   return (
     <article className="group card-slow flex flex-col border border-border bg-card">
       <div className="relative overflow-hidden">

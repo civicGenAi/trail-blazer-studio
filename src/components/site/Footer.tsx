@@ -1,27 +1,52 @@
 import { Link } from "@tanstack/react-router";
 import logoDark from "@/assets/logo-black.png.asset.json";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { WHATSAPP_URL, browseByType, moreLinks } from "./nav-data";
+import { company } from "@/data/site";
+
+const explore = [
+  { to: "/safaris", label: "All safari tours" },
+  { to: "/migration", label: "The Great Migration" },
+  { to: "/destinations", label: "Destinations" },
+  { to: "/trekking", label: "Mountain trekking" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/blog", label: "Field notes" },
+];
 
 export function Footer() {
   return (
     <footer className="border-t border-cream/10 bg-savanna text-cream">
-      <div className="container-editorial grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div className="container-editorial grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
         <div>
-          <img src={logoDark.url} alt="Arusha Wildlife Safaris" className="h-16 w-auto" width={240} height={160} loading="lazy" />
+          <img
+            src={logoDark.url}
+            alt="Arusha Wildlife Safaris"
+            className="h-16 w-auto"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
           <p className="mt-4 max-w-xs text-sm text-cream/60">
-            Arusha-based safari operator. Northern circuit, Kilimanjaro routes and Zanzibar extensions, run with our own
-            vehicles and guides.
+            Arusha-based safari operator. Northern circuit, Kilimanjaro routes and Zanzibar
+            extensions, run with our own vehicles and guides.
           </p>
-          <p className="field-note mt-5 text-cream/40">03°22′S 36°41′E · Arusha, Tanzania</p>
+          <div
+            className="trail-dotted-x mt-6 w-24"
+            style={{ backgroundSize: "100% 100%" }}
+            aria-hidden
+          />
+          <p className="field-note mt-5 text-cream/40">
+            {company.coordinates} · {company.address}
+          </p>
         </div>
 
         <div>
-          <p className="eyebrow">Safaris</p>
+          <p className="eyebrow">Explore</p>
           <ul className="mt-4 space-y-2 text-sm text-cream/70">
-            {browseByType.slice(0, 6).map((t) => (
-              <li key={t}>
-                <Link to="/safaris" search={{ type: t }} className="hover:text-cream">
-                  {t}
+            {explore.map((e) => (
+              <li key={e.to}>
+                <Link to={e.to} className="transition-colors duration-300 hover:text-cream">
+                  {e.label}
                 </Link>
               </li>
             ))}
@@ -29,12 +54,16 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow">Company</p>
+          <p className="eyebrow">By type</p>
           <ul className="mt-4 space-y-2 text-sm text-cream/70">
-            {moreLinks.map((m) => (
-              <li key={m.to}>
-                <Link to={m.to} className="hover:text-cream">
-                  {m.title}
+            {browseByType.map((t) => (
+              <li key={t}>
+                <Link
+                  to="/safaris"
+                  search={{ type: t }}
+                  className="transition-colors duration-300 hover:text-cream"
+                >
+                  {t}
                 </Link>
               </li>
             ))}
@@ -45,22 +74,49 @@ export function Footer() {
           <p className="eyebrow">Contact</p>
           <ul className="mt-4 space-y-2 text-sm text-cream/70">
             <li>
-              <a href="mailto:book@arushawildlifesafaris.com" className="hover:text-cream">
-                book@arushawildlifesafaris.com
+              <a
+                href={`mailto:${company.email}`}
+                className="transition-colors duration-300 hover:text-cream"
+              >
+                {company.email}
               </a>
             </li>
             <li>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="hover:text-cream">
-                WhatsApp: +255 700 000 000
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-cream"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-gold" />
+                {company.phoneDisplay}
               </a>
             </li>
+            <li className="text-cream/50">{company.officeHours}</li>
             <li className="text-cream/50">Replies within one working day</li>
+          </ul>
+
+          <p className="eyebrow mt-8">Company</p>
+          <ul className="mt-4 space-y-2 text-sm text-cream/70">
+            {moreLinks
+              .filter((m) => ["/about", "/faq", "/contact"].includes(m.to))
+              .map((m) => (
+                <li key={m.to}>
+                  <Link to={m.to} className="transition-colors duration-300 hover:text-cream">
+                    {m.title}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
+
       <div className="border-t border-cream/10">
-        <div className="container-editorial flex flex-col gap-2 py-5 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Arusha Wildlife Safaris. Explore Tanzania · Experience the Wild.</p>
+        {/* Extra right padding keeps the legal line clear of the floating WhatsApp button. */}
+        <div className="container-editorial flex flex-col gap-2 py-5 pb-20 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between sm:pb-5 sm:pr-52">
+          <p>
+            © {new Date().getFullYear()} {company.name}. {company.tagline}
+          </p>
           <p className="field-note">TALA licence pending · TATO member</p>
         </div>
       </div>

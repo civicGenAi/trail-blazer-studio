@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Horizontal dotted trail line that draws in when scrolled into view. */
+/**
+ * Horizontal dotted trail line that draws in when scrolled into view.
+ *
+ * The passed className lands on a wrapper, not on the line itself: callers
+ * often add a `rise-*` load animation, and two `animation` declarations on one
+ * element would cancel each other and leave the line at zero width.
+ */
 export function TrailLine({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -10,7 +16,10 @@ export function TrailLine({ className = "" }: { className?: string }) {
     if (!el) return;
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) setVisible(true);
+        if (entry?.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
       },
       { threshold: 0.2 },
     );
@@ -19,7 +28,9 @@ export function TrailLine({ className = "" }: { className?: string }) {
   }, []);
 
   return (
-    <div ref={ref} className={`trail-dotted-x ${visible ? "trail-draw-x" : ""} ${className}`} aria-hidden />
+    <div ref={ref} className={className} aria-hidden>
+      <div className={`trail-dotted-x w-full ${visible ? "trail-draw-x" : ""}`} />
+    </div>
   );
 }
 
