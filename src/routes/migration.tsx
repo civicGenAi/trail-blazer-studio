@@ -38,8 +38,8 @@ export const Route = createFileRoute("/migration")({
 const phaseColor: Record<string, string> = {
   Calving: "text-primary",
   "On the move": "text-muted-foreground",
-  "River crossings": "text-gold",
-  "Peak crossings": "text-gold",
+  "River crossings": "text-summit",
+  "Peak crossings": "text-summit",
 };
 
 function MigrationPage() {
@@ -50,7 +50,7 @@ function MigrationPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate">
+      <section className="on-dark relative isolate">
         <img
           src={images.migrationCrossing}
           alt="Wildebeest crossing the Mara River"
@@ -60,14 +60,14 @@ function MigrationPage() {
         />
         <div className="absolute inset-0 -z-10 bg-savanna/75" />
         <div className="container-editorial py-28 md:py-36">
-          <span className="rise field-note inline-flex items-center gap-2 border border-gold/60 px-3 py-1.5 text-gold">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />
+          <span className="rise field-note inline-flex items-center gap-2 border border-summit/60 px-3 py-1.5 text-summit">
+            <span className="h-1.5 w-1.5 rounded-full bg-summit" aria-hidden />
             {current.month} status: {current.phase} · {current.region}
           </span>
-          <h1 className="rise-1 mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-7xl">
+          <h1 className="rise-1 mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-7xl">
             The migration is a <em className="font-normal italic">loop</em>, not a season
           </h1>
-          <p className="rise-2 mt-5 max-w-xl text-cream/75">
+          <p className="rise-2 mt-5 max-w-xl text-mist/75">
             1.5 million wildebeest and 300,000 zebra move through the Serengeti–Mara ecosystem
             year-round. Where they are decides where you should sleep.
           </p>
@@ -75,7 +75,7 @@ function MigrationPage() {
             <Link
               to="/safaris"
               search={{ type: "Migration" }}
-              className="border border-gold px-5 py-3 text-sm text-gold transition-colors duration-300 hover:bg-gold/10"
+              className="border border-summit px-5 py-3 text-sm text-summit transition-colors duration-300 hover:bg-summit/10"
             >
               View Packages
             </Link>
@@ -83,7 +83,7 @@ function MigrationPage() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="border border-cream/40 px-5 py-3 text-sm text-cream transition-colors duration-300 hover:border-cream"
+              className="border border-mist/40 px-5 py-3 text-sm text-mist transition-colors duration-300 hover:border-mist"
             >
               Ask Us
             </a>
@@ -149,10 +149,10 @@ function MigrationPage() {
         <div className="container-editorial grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
           <div>
             <p className="eyebrow">Booking window</p>
-            <h2 className="mt-4 text-4xl text-cream md:text-5xl">
+            <h2 className="mt-4 text-4xl text-mist md:text-5xl">
               Kogatende camps for August sell out 9–12 months ahead
             </h2>
-            <p className="mt-4 max-w-xl text-cream/70">
+            <p className="mt-4 max-w-xl text-mist/70">
               There are roughly 40 camps within reach of the crossing points. Send dates and group
               size and we will tell you what is still open.
             </p>
@@ -160,7 +160,7 @@ function MigrationPage() {
           <div className="flex flex-wrap gap-3 md:justify-end">
             <Link
               to="/contact"
-              className="border border-gold px-5 py-3 text-sm text-gold hover:bg-gold/10"
+              className="border border-summit px-5 py-3 text-sm text-summit hover:bg-summit/10"
             >
               Check availability
             </Link>
@@ -168,7 +168,7 @@ function MigrationPage() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="border border-cream/40 px-5 py-3 text-sm text-cream hover:border-cream"
+              className="border border-mist/40 px-5 py-3 text-sm text-mist hover:border-mist"
             >
               WhatsApp us
             </a>
@@ -234,7 +234,7 @@ function MonthStrip({ currentMonth }: { currentMonth: number }) {
                   <span
                     className={`field-note z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-500 ${
                       isNow
-                        ? "border-gold bg-gold text-savanna"
+                        ? "border-summit bg-summit text-savanna"
                         : "border-border bg-background text-muted-foreground"
                     }`}
                   >
@@ -248,7 +248,7 @@ function MonthStrip({ currentMonth }: { currentMonth: number }) {
                       {m.line}
                     </p>
                     {isNow && (
-                      <p className="field-note mt-2.5 inline-block border border-gold/50 px-2 py-1 text-gold">
+                      <p className="field-note mt-2.5 inline-block border border-summit/50 px-2 py-1 text-summit">
                         You are here
                       </p>
                     )}

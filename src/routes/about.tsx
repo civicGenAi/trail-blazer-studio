@@ -41,12 +41,12 @@ function AboutPage() {
           <div>
             <p className="rise eyebrow">About us</p>
             <TrailLine className="rise-1 mt-4 w-full max-w-xs" />
-            <h1 className="rise-2 mt-6 text-4xl text-cream sm:text-5xl lg:text-6xl">
+            <h1 className="rise-2 mt-6 text-4xl text-mist sm:text-5xl lg:text-6xl">
               Eleven years running the same
               <br />
               <em className="font-normal italic">northern circuit</em>
             </h1>
-            <p className="rise-3 mt-6 max-w-lg text-cream/70">
+            <p className="rise-3 mt-6 max-w-lg text-mist/70">
               We started in {company.founded} with two vehicles and one route. The company is still
               in Arusha, still owns its fleet, and still runs private trips only.
             </p>
@@ -101,7 +101,7 @@ function AboutPage() {
           <ol className="mt-12 grid gap-px bg-border md:grid-cols-2">
             {whyUs.map((w, i) => (
               <Reveal key={w.title} as="li" delay={(i % 2) * 80} className="bg-background p-8">
-                <span className="field-note text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <span className="field-note text-summit">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-4 text-2xl">{w.title}</h3>
                 <p className="mt-3 text-muted-foreground">{w.body}</p>
               </Reveal>
@@ -122,7 +122,7 @@ function AboutPage() {
           <ol className="mt-12 grid gap-10 md:grid-cols-4">
             {bookingSteps.map((s, i) => (
               <Reveal key={s.step} as="li" delay={i * 80} className="relative">
-                <span className="field-note flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 text-gold">
+                <span className="field-note flex h-11 w-11 items-center justify-center rounded-full border border-summit/60 text-summit">
                   {s.step}
                 </span>
                 {i < bookingSteps.length - 1 && (
@@ -180,10 +180,10 @@ function AboutPage() {
       <section className="grain-dark py-20">
         <div className="container-editorial grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
           <Reveal>
-            <h2 className="text-4xl text-cream md:text-5xl">
+            <h2 className="text-4xl text-mist md:text-5xl">
               Ask us something specific and we will answer specifically
             </h2>
-            <p className="mt-5 max-w-xl text-cream/70">
+            <p className="mt-5 max-w-xl text-mist/70">
               Vehicle age, guide tenure, which camps we hold contracts with. All fair questions, and
               all answerable in one reply.
             </p>

@@ -29,9 +29,24 @@ Run `lint` and `tsc --noEmit` before committing. Both must be clean.
 
 ## Design system
 
-Five colors only: Savanna Night `#14231C`, Deep Canopy `#1F5C33`, Trail Gold
-`#C8963C`, Dust Cream `#EFE7D8`, Charcoal Ink `#201C16`. Trail Gold is a line, a
-price or one outlined CTA per section, and never a background fill.
+Every colour is sampled from the logo. The mark holds two families and nothing
+else: a deep forest green carrying the wordmark, and a lighter lime lighting the
+mountain.
+
+| Token | Hex | Role |
+| --- | --- | --- |
+| `--savanna` | `#0B1B0E` | dark ground, the wordmark hue at 7.5% lightness |
+| `--canopy` | `#0C5418` | the wordmark green, 60% of the mark |
+| `--summit` | `#80B927` | the mountain's lightest ink, accent on dark |
+| `--summit-ink` | `#457213` | same hue darkened, accent on light |
+| `--mist` | `#ECF1E9` | light ground |
+| `--ink` | `#132315` | body text on light |
+
+Summit is a line, a price, or one outlined CTA per section, and never a
+background fill. Do not hardcode either accent: `.eyebrow` and `.price` read
+`--accent-ink`, which flips to the bright tone inside `.grain-dark`,
+`.bg-savanna` or anything marked `.on-dark`. Bright Summit reaches only 2.2:1 on
+Mist, so a hand-picked accent on a light surface will fail contrast.
 
 Three type roles: Fraunces for display, Instrument Sans for body and UI, Space
 Mono for day numbers, distances, coordinates and prices.

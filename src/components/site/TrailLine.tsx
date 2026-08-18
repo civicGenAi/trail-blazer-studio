@@ -38,7 +38,7 @@ export function TrailLine({ className = "" }: { className?: string }) {
 export function TrailNode({ label }: { label: string }) {
   return (
     <div className="flex shrink-0 flex-col items-center self-stretch">
-      <span className="field-note flex h-9 w-9 items-center justify-center rounded-full border border-gold/60 text-gold">
+      <span className="field-note flex h-9 w-9 items-center justify-center rounded-full border border-summit/60 text-summit">
         {label}
       </span>
       <div className="trail-dotted-y mt-2 flex-1" />

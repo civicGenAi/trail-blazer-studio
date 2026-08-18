@@ -43,10 +43,10 @@ function FaqPage() {
         <div className="container-editorial">
           <p className="rise eyebrow">Frequently asked</p>
           <TrailLine className="rise-1 mt-4 w-full max-w-xs" />
-          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-6xl">
             {total} questions we are asked <em className="font-normal italic">before every trip</em>
           </h1>
-          <p className="rise-3 mt-6 max-w-xl text-cream/70">
+          <p className="rise-3 mt-6 max-w-xl text-mist/70">
             Figures are current for 2026 and come from the published TANAPA and NCAA schedules. If
             something here is out of date, tell us and we will correct it.
           </p>
@@ -92,8 +92,8 @@ function FaqPage() {
       <section className="grain-dark py-20">
         <div className="container-editorial grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
           <Reveal>
-            <h2 className="text-4xl text-cream md:text-5xl">Not answered here?</h2>
-            <p className="mt-5 max-w-xl text-cream/70">
+            <h2 className="text-4xl text-mist md:text-5xl">Not answered here?</h2>
+            <p className="mt-5 max-w-xl text-mist/70">
               Send the question. If it is a good one we will add it to this page with your first
               name on it, unless you would rather we did not.
             </p>

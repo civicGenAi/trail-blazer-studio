@@ -30,13 +30,13 @@ export function StatStrip({
   dark?: boolean;
 }) {
   return (
-    <dl className={`grid grid-cols-2 gap-px md:grid-cols-4 ${dark ? "bg-cream/10" : "bg-border"}`}>
+    <dl className={`grid grid-cols-2 gap-px md:grid-cols-4 ${dark ? "bg-mist/10" : "bg-border"}`}>
       {stats.map((s) => (
         <div key={s.label} className={`p-6 ${dark ? "bg-savanna" : "bg-background"}`}>
-          <dt className={`field-note ${dark ? "text-cream/50" : "text-muted-foreground"}`}>
+          <dt className={`field-note ${dark ? "text-mist/50" : "text-muted-foreground"}`}>
             {s.label}
           </dt>
-          <dd className={`mt-2 font-mono text-3xl ${dark ? "text-cream" : "text-foreground"}`}>
+          <dd className={`mt-2 font-mono text-3xl ${dark ? "text-mist" : "text-foreground"}`}>
             {s.value}
           </dd>
         </div>

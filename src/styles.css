@@ -6,12 +6,21 @@
 
 /*
  * Arusha Wildlife Safaris design system.
- * 5 named colors only:
- *   Savanna Night #14231C  --savanna
- *   Deep Canopy   #1F5C33  --canopy
- *   Trail Gold    #C8963C  --gold   (line, price, one CTA per screen, never a fill)
- *   Dust Cream    #EFE7D8  --cream
- *   Charcoal Ink  #201C16  --ink
+ *
+ * Every colour below is sampled from the logo itself, not chosen to sit near it.
+ * The mark contains exactly two families: a deep forest green that carries the
+ * wordmark, and a lighter lime that lights the mountain. Nothing else.
+ *
+ *   Forest Night  #0B1B0E  --savanna       dark ground, the wordmark hue at 7.5% lightness
+ *   Deep Canopy   #0C5418  --canopy        the wordmark green, 60% of the mark
+ *   Summit Lime   #80B927  --summit        the mountain's lightest ink, the only accent
+ *   Summit Deep   #457213  --summit-ink    same hue darkened, for accent text on light
+ *   Mist          #F5F9F3  --mist          light ground, a near-white with a green cast
+ *   Forest Ink    #132315  --ink           body text on light
+ *
+ * Summit Lime is a line, a price or one outlined CTA per section. It is never a
+ * background fill. On light surfaces use --summit-ink instead: the bright lime
+ * only reaches 2.2:1 on Mist, which no body text can use.
  */
 
 @theme inline {
@@ -30,9 +39,10 @@
   --color-savanna-deep: var(--savanna-deep);
   --color-canopy: var(--canopy);
   --color-canopy-light: var(--canopy-light);
-  --color-gold: var(--gold);
-  --color-cream: var(--cream);
-  --color-cream-light: var(--cream-light);
+  --color-summit: var(--summit);
+  --color-summit-ink: var(--summit-ink);
+  --color-mist: var(--mist);
+  --color-mist-light: var(--mist-light);
   --color-ink: var(--ink);
 
   --color-background: var(--background);
@@ -68,42 +78,55 @@
 :root {
   --radius: 0.125rem;
 
-  --savanna: oklch(0.2399 0.0246 163.7);
-  --savanna-deep: oklch(0.1941 0.0156 165.64);
-  --canopy: oklch(0.424 0.0922 151.16);
-  --canopy-light: oklch(0.4995 0.1078 151.12);
-  --gold: oklch(0.7044 0.1211 78.99);
-  --cream: oklch(0.9302 0.0218 83.26);
-  --cream-light: oklch(0.9623 0.0143 84.58);
-  --ink: oklch(0.2289 0.0128 77.98);
+  /* Sampled from the logo. Hex is kept in the comment so the source is checkable. */
+  --savanna: #0b1b0e; /* Forest Night */
+  --savanna-deep: #071209;
+  --canopy: #0c5418; /* the wordmark green */
+  --canopy-light: #216f1d;
+  --summit: #80b927; /* the mountain's lightest ink */
+  --summit-ink: #457213; /* the same hue, dark enough for text on every light surface */
+  --mist: #ecf1e9;
+  --mist-light: #f5f9f3;
+  --ink: #132315;
 
-  --background: var(--cream-light);
+  --background: var(--mist-light);
   --foreground: var(--ink);
-  --card: oklch(1 0 0);
+  --card: #ffffff;
   --card-foreground: var(--ink);
-  --popover: var(--cream-light);
+  --popover: var(--mist-light);
   --popover-foreground: var(--ink);
   --primary: var(--canopy);
-  --primary-foreground: var(--cream-light);
-  --secondary: var(--cream);
+  --primary-foreground: var(--mist-light);
+  --secondary: var(--mist);
   --secondary-foreground: var(--savanna);
-  --muted: var(--cream);
-  --muted-foreground: oklch(0.46 0.02 120);
-  --accent: var(--cream);
+  --muted: var(--mist);
+  --muted-foreground: #4a5c48;
+  --accent: var(--mist);
   --accent-foreground: var(--canopy);
-  --destructive: oklch(0.53 0.18 27);
-  --destructive-foreground: var(--cream-light);
-  --border: oklch(0.86 0.02 90);
-  --input: oklch(0.86 0.02 90);
+  --destructive: #a32f22;
+  --destructive-foreground: var(--mist-light);
+  --border: #d4ddd0;
+  --input: #d4ddd0;
   --ring: var(--canopy);
-  --sidebar: var(--cream);
+  --sidebar: var(--mist);
   --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--canopy);
-  --sidebar-primary-foreground: var(--cream-light);
-  --sidebar-accent: var(--cream-light);
+  --sidebar-primary-foreground: var(--mist-light);
+  --sidebar-accent: var(--mist-light);
   --sidebar-accent-foreground: var(--canopy);
-  --sidebar-border: oklch(0.86 0.02 90);
+  --sidebar-border: #d4ddd0;
   --sidebar-ring: var(--canopy);
+
+  /* Light ground is the default, so the accent starts at the darker tone. */
+  --accent-ink: var(--summit-ink);
+}
+
+/* Any dark ground switches the accent to the bright mountain lime. */
+.grain-dark,
+.bg-savanna,
+.bg-savanna-deep,
+.on-dark {
+  --accent-ink: var(--summit);
 }
 
 @layer base {
@@ -129,12 +152,12 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--summit);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--gold);
+    background: var(--summit);
     color: var(--savanna);
   }
 }
@@ -159,18 +182,29 @@
   text-transform: uppercase;
 }
 
+/*
+ * The accent picks its own tone from the surface it sits on. Bright Summit Lime
+ * only reaches 2.2:1 on Mist, so light surfaces get the darkened Summit Deep and
+ * dark surfaces get the bright one. Setting one variable means no eyebrow or
+ * price can be authored against the wrong background.
+ */
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent-ink);
 }
 
 @utility price {
   font-family: var(--font-mono);
-  color: var(--gold);
+  color: var(--accent-ink);
   letter-spacing: -0.02em;
+}
+
+/** Marks a section that sits on dark ground: a photograph, a scrim, or savanna. */
+@utility on-dark {
+  --accent-ink: var(--summit);
 }
 
 @utility card-slow {
@@ -195,7 +229,7 @@
 @utility trail-dotted-x {
   background-image: repeating-linear-gradient(
     to right,
-    var(--gold) 0 6px,
+    var(--summit) 0 6px,
     transparent 6px 14px
   );
   background-repeat: no-repeat;
@@ -205,7 +239,7 @@
 @utility trail-dotted-y {
   background-image: repeating-linear-gradient(
     to bottom,
-    var(--gold) 0 6px,
+    var(--summit) 0 6px,
     transparent 6px 14px
   );
   background-repeat: no-repeat;
@@ -268,7 +302,7 @@
 
 @utility grain-dark {
   background-color: var(--savanna);
-  color: var(--cream);
+  color: var(--mist);
 }
 
 
@@ -316,7 +350,7 @@
 }
 
 @utility link-underline {
-  background-image: linear-gradient(var(--gold), var(--gold));
+  background-image: linear-gradient(var(--summit), var(--summit));
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0% 1px;
@@ -327,7 +361,7 @@
   }
 }
 
-/* Overlay that keeps cream text legible on full-bleed photography */
+/* Overlay that keeps mist text legible on full-bleed photography */
 @utility photo-scrim {
   background: linear-gradient(
     to top,

@@ -29,13 +29,13 @@ function NotFoundComponent() {
       <div className="container-editorial">
         <p className="eyebrow">Error 404</p>
         <div className="trail-dotted-x trail-draw-x mt-4 w-full max-w-xs" aria-hidden />
-        <h1 className="mt-6 max-w-2xl text-4xl text-cream sm:text-5xl lg:text-6xl">
+        <h1 className="mt-6 max-w-2xl text-4xl text-mist sm:text-5xl lg:text-6xl">
           This page is not on the map
         </h1>
-        <p className="mt-5 max-w-lg text-cream/70">
+        <p className="mt-5 max-w-lg text-mist/70">
           The link may be out of date. These four cover most of what people are looking for.
         </p>
-        <ul className="mt-10 grid max-w-3xl gap-px bg-cream/10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid max-w-3xl gap-px bg-mist/10 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { to: "/safaris", label: "Safari tours", note: "Six itineraries, filterable" },
             { to: "/migration", label: "Migration", note: "Where the herds are now" },
@@ -47,8 +47,8 @@ function NotFoundComponent() {
                 to={l.to}
                 className="flex h-full flex-col p-5 transition-colors duration-300 hover:bg-savanna-deep"
               >
-                <span className="text-cream">{l.label}</span>
-                <span className="field-note mt-2 text-cream/45">{l.note}</span>
+                <span className="text-mist">{l.label}</span>
+                <span className="field-note mt-2 text-mist/45">{l.note}</span>
               </Link>
             </li>
           ))}
@@ -235,7 +235,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-savanna focus:px-4 focus:py-3 focus:text-sm focus:text-cream"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-savanna focus:px-4 focus:py-3 focus:text-sm focus:text-mist"
       >
         Skip to content
       </a>

@@ -62,7 +62,7 @@ function TrekkingPage() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[70vh] items-end">
+      <section className="on-dark relative isolate flex min-h-[70vh] items-end">
         <img
           src={trekHero}
           alt="Kibo peak seen from the Shira plateau"
@@ -75,10 +75,10 @@ function TrekkingPage() {
         <div className="container-editorial pb-16 pt-32">
           <p className="rise eyebrow">Mountain trekking</p>
           <TrailLine className="rise-1 mt-4 w-full max-w-sm" />
-          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-cream sm:text-5xl lg:text-7xl">
+          <h1 className="rise-2 mt-6 max-w-3xl text-4xl text-mist sm:text-5xl lg:text-7xl">
             Four routes to <em className="font-normal italic">5,895 m</em>
           </h1>
-          <p className="rise-3 mt-6 max-w-xl text-cream/75">
+          <p className="rise-3 mt-6 max-w-xl text-mist/75">
             No technical climbing on any of them. What separates the routes is how much time they
             give you above 3,500 m, and that is what decides whether you summit.
           </p>
@@ -93,7 +93,7 @@ function TrekkingPage() {
         </div>
       </section>
 
-      <section className="grain-dark border-t border-cream/10">
+      <section className="grain-dark border-t border-mist/10">
         <div className="container-editorial py-10">
           <StatStrip
             dark
@@ -165,7 +165,7 @@ function TrekkingPage() {
           <ol className="mt-12 grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
             {trekPrep.map((p, i) => (
               <Reveal key={p.title} as="li" delay={i * 70} className="bg-background p-7">
-                <span className="field-note text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <span className="field-note text-summit">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-4 text-2xl">{p.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{p.body}</p>
               </Reveal>
@@ -178,10 +178,10 @@ function TrekkingPage() {
         <div className="container-editorial grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
           <Reveal>
             <p className="eyebrow">Booking window</p>
-            <h2 className="mt-4 text-4xl text-cream md:text-5xl">
+            <h2 className="mt-4 text-4xl text-mist md:text-5xl">
               Climbing permits are capped per gate per day
             </h2>
-            <p className="mt-5 max-w-xl text-cream/70">
+            <p className="mt-5 max-w-xl text-mist/70">
               January to March and June to October fill first. Send your dates and we will confirm
               gate availability before you book flights.
             </p>
@@ -282,7 +282,7 @@ function ElevationTrail({ profile }: { profile: TrekRoute["profile"] }) {
           <polyline
             points={points.map((p) => `${p.x},${p.y}`).join(" ")}
             fill="none"
-            stroke="var(--gold)"
+            stroke="var(--summit)"
             strokeWidth="1.2"
             strokeDasharray="3 3"
             vectorEffect="non-scaling-stroke"
@@ -293,7 +293,7 @@ function ElevationTrail({ profile }: { profile: TrekRoute["profile"] }) {
               cx={p.x}
               cy={p.y}
               r="1.4"
-              fill="var(--gold)"
+              fill="var(--summit)"
               vectorEffect="non-scaling-stroke"
             />
           ))}
@@ -308,7 +308,7 @@ function ElevationTrail({ profile }: { profile: TrekRoute["profile"] }) {
             }`}
           >
             {p.label}
-            <span className="block text-gold">{p.altitude.toLocaleString()}</span>
+            <span className="block text-summit">{p.altitude.toLocaleString()}</span>
           </li>
         ))}
       </ol>
