@@ -10,12 +10,60 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as SafarisRouteImport } from './routes/safaris'
+import { Route as TrekkingRouteImport } from './routes/trekking'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
+import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as SafarisIndexRouteImport } from './routes/safaris.index'
+import { Route as SafarisSlugRouteImport } from './routes/safaris.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsRoute = DestinationsRouteImport.update({
+  id: '/destinations',
+  path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MigrationRoute = MigrationRouteImport.update({
+  id: '/migration',
+  path: '/migration',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SafarisRoute = SafarisRouteImport.update({
@@ -23,38 +71,159 @@ const SafarisRoute = SafarisRouteImport.update({
   path: '/safaris',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrekkingRoute = TrekkingRouteImport.update({
+  id: '/trekking',
+  path: '/trekking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DestinationsRoute,
+} as any)
+const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DestinationsRoute,
+} as any)
 const SafarisIndexRoute = SafarisIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SafarisRoute,
 } as any)
+const SafarisSlugRoute = SafarisSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SafarisRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/destinations': typeof DestinationsRouteWithChildren
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/migration': typeof MigrationRoute
   '/safaris': typeof SafarisRouteWithChildren
+  '/trekking': typeof TrekkingRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/safaris/$slug': typeof SafarisSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/migration': typeof MigrationRoute
+  '/trekking': typeof TrekkingRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/safaris/$slug': typeof SafarisSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/destinations': typeof DestinationsIndexRoute
   '/safaris': typeof SafarisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/destinations': typeof DestinationsRouteWithChildren
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/migration': typeof MigrationRoute
   '/safaris': typeof SafarisRouteWithChildren
+  '/trekking': typeof TrekkingRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/safaris/$slug': typeof SafarisSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/safaris' | '/safaris/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/contact'
+    | '/destinations'
+    | '/faq'
+    | '/gallery'
+    | '/migration'
+    | '/safaris'
+    | '/trekking'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/safaris/$slug'
+    | '/blog/'
+    | '/destinations/'
+    | '/safaris/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/safaris'
-  id: '__root__' | '/' | '/safaris' | '/safaris/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/gallery'
+    | '/migration'
+    | '/trekking'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/safaris/$slug'
+    | '/blog'
+    | '/destinations'
+    | '/safaris'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/contact'
+    | '/destinations'
+    | '/faq'
+    | '/gallery'
+    | '/migration'
+    | '/safaris'
+    | '/trekking'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/safaris/$slug'
+    | '/blog/'
+    | '/destinations/'
+    | '/safaris/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  DestinationsRoute: typeof DestinationsRouteWithChildren
+  FaqRoute: typeof FaqRoute
+  GalleryRoute: typeof GalleryRoute
+  MigrationRoute: typeof MigrationRoute
   SafarisRoute: typeof SafarisRouteWithChildren
+  TrekkingRoute: typeof TrekkingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,12 +235,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations': {
+      id: '/destinations'
+      path: '/destinations'
+      fullPath: '/destinations'
+      preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/migration': {
+      id: '/migration'
+      path: '/migration'
+      fullPath: '/migration'
+      preLoaderRoute: typeof MigrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/safaris': {
       id: '/safaris'
       path: '/safaris'
       fullPath: '/safaris'
       preLoaderRoute: typeof SafarisRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/trekking': {
+      id: '/trekking'
+      path: '/trekking'
+      fullPath: '/trekking'
+      preLoaderRoute: typeof TrekkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
+      parentRoute: typeof DestinationsRoute
+    }
+    '/destinations/$slug': {
+      id: '/destinations/$slug'
+      path: '/$slug'
+      fullPath: '/destinations/$slug'
+      preLoaderRoute: typeof DestinationsSlugRouteImport
+      parentRoute: typeof DestinationsRoute
     }
     '/safaris/': {
       id: '/safaris/'
@@ -80,14 +333,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SafarisIndexRouteImport
       parentRoute: typeof SafarisRoute
     }
+    '/safaris/$slug': {
+      id: '/safaris/$slug'
+      path: '/$slug'
+      fullPath: '/safaris/$slug'
+      preLoaderRoute: typeof SafarisSlugRouteImport
+      parentRoute: typeof SafarisRoute
+    }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface DestinationsRouteChildren {
+  DestinationsSlugRoute: typeof DestinationsSlugRoute
+  DestinationsIndexRoute: typeof DestinationsIndexRoute
+}
+
+const DestinationsRouteChildren: DestinationsRouteChildren = {
+  DestinationsSlugRoute: DestinationsSlugRoute,
+  DestinationsIndexRoute: DestinationsIndexRoute,
+}
+
+const DestinationsRouteWithChildren = DestinationsRoute._addFileChildren(
+  DestinationsRouteChildren,
+)
+
 interface SafarisRouteChildren {
+  SafarisSlugRoute: typeof SafarisSlugRoute
   SafarisIndexRoute: typeof SafarisIndexRoute
 }
 
 const SafarisRouteChildren: SafarisRouteChildren = {
+  SafarisSlugRoute: SafarisSlugRoute,
   SafarisIndexRoute: SafarisIndexRoute,
 }
 
@@ -96,7 +384,15 @@ const SafarisRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BlogRoute: BlogRouteWithChildren,
+  ContactRoute: ContactRoute,
+  DestinationsRoute: DestinationsRouteWithChildren,
+  FaqRoute: FaqRoute,
+  GalleryRoute: GalleryRoute,
+  MigrationRoute: MigrationRoute,
   SafarisRoute: SafarisRouteWithChildren,
+  TrekkingRoute: TrekkingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

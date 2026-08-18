@@ -44,26 +44,43 @@ function TourDetail() {
         <div className="relative">
           <img
             src={tour.gallery[shot] ?? tour.hero_image}
-            alt={tour.title}
+            alt={`${tour.title} — photograph ${shot + 1} of ${tour.gallery.length}`}
             className="h-[52vh] w-full object-cover md:h-[64vh]"
             width={1920}
             height={1080}
+            fetchPriority="high"
           />
-          <div className="absolute inset-x-0 bottom-0 flex gap-2 p-4">
-            {tour.gallery.map((g, i) => (
-              <button
-                key={g + i}
-                type="button"
-                onClick={() => setShot(i)}
-                aria-label={`Show photo ${i + 1}`}
-                aria-current={i === shot}
-                className={`h-14 w-20 overflow-hidden border-2 transition-colors duration-300 ${
-                  i === shot ? "border-gold" : "border-cream/30"
-                }`}
-              >
-                <img src={g} alt="" className="h-full w-full object-cover" width={200} height={140} loading="lazy" />
-              </button>
-            ))}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-40 photo-scrim"
+            aria-hidden
+          />
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4">
+            <div className="flex gap-2 overflow-x-auto">
+              {tour.gallery.map((g, i) => (
+                <button
+                  key={g + i}
+                  type="button"
+                  onClick={() => setShot(i)}
+                  aria-label={`Show photo ${i + 1} of ${tour.gallery.length}`}
+                  aria-current={i === shot}
+                  className={`h-14 w-20 shrink-0 overflow-hidden border-2 transition-colors duration-300 ${
+                    i === shot ? "border-gold" : "border-cream/30 hover:border-cream/70"
+                  }`}
+                >
+                  <img
+                    src={g}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    width={200}
+                    height={140}
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+            <p className="field-note shrink-0 text-cream/70">
+              {String(shot + 1).padStart(2, "0")} / {String(tour.gallery.length).padStart(2, "0")}
+            </p>
           </div>
         </div>
       </section>
@@ -72,26 +89,39 @@ function TourDetail() {
       <section className="grain-dark py-10">
         <div className="container-editorial">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-cream/50">
-            <Link to="/" className="hover:text-cream">Home</Link>
+            <Link to="/" className="hover:text-cream">
+              Home
+            </Link>
             <ChevronRight className="h-3 w-3" />
-            <Link to="/safaris" className="hover:text-cream">Safaris</Link>
+            <Link to="/safaris" className="hover:text-cream">
+              Safaris
+            </Link>
             <ChevronRight className="h-3 w-3" />
             <span className="text-cream/80">{tour.title}</span>
           </nav>
-          <h1 className="mt-5 max-w-3xl text-4xl md:text-6xl">{tour.title}</h1>
+          <h1 className="mt-5 max-w-3xl text-3xl sm:text-4xl lg:text-6xl">{tour.title}</h1>
           <p className="field-note mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-cream/60">
             <span>{tour.type}</span>
             <span>{tour.destination}</span>
             <span>{tour.difficulty}</span>
             <span className="flex items-center gap-1.5 text-gold">
-              <Star className="h-3.5 w-3.5" aria-hidden /> {tour.rating.toFixed(1)} / {tour.reviews} reviews
+              <Star className="h-3.5 w-3.5" aria-hidden /> {tour.rating.toFixed(1)} / {tour.reviews}{" "}
+              reviews
             </span>
           </p>
           <TrailLine className="mt-8 w-full" />
           <dl className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-5">
-            <Fact icon={<Clock className="h-4 w-4" />} label="Duration" value={`${tour.duration_days}d / ${tour.duration_nights}n`} />
+            <Fact
+              icon={<Clock className="h-4 w-4" />}
+              label="Duration"
+              value={`${tour.duration_days}d / ${tour.duration_nights}n`}
+            />
             <Fact icon={<MapPin className="h-4 w-4" />} label="Starts" value="Arusha" />
-            <Fact icon={<Users className="h-4 w-4" />} label="Max group" value={`${tour.max_pax}`} />
+            <Fact
+              icon={<Users className="h-4 w-4" />}
+              label="Max group"
+              value={`${tour.max_pax}`}
+            />
             <Fact icon={<Utensils className="h-4 w-4" />} label="Meals" value={tour.meal_plan} />
             <Fact icon={<MapPin className="h-4 w-4" />} label="Vehicle" value={tour.vehicle_type} />
           </dl>

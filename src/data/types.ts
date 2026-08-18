@@ -59,6 +59,14 @@ export type Destination = {
   highlight_tags: string[];
   related_tour_slugs: string[];
   featured?: boolean;
+  /** Short label for the schematic map, where space is tight. */
+  short: string;
   /** map pin position in percent of the map frame */
   pin: { x: number; y: number };
+  /** Bare numbers for the at-a-glance row on the destination page. */
+  quick_facts?: { label: string; value: string }[];
+  /** What is realistically seen there, named rather than described. */
+  wildlife?: string[];
+  /** How you get in, and how long it takes from Arusha. */
+  access?: string;
 };
